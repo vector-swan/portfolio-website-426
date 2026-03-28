@@ -24,7 +24,7 @@ const HowIWorkSection = () => {
           }`}
         >
           <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl text-foreground">
-            AI is not just what I design. It is how I work.
+            I work in AI. I build with AI. I design for AI.
           </h2>
         </div>
 
@@ -79,12 +79,6 @@ const HowIWorkSection = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-8 rounded-xl px-6 py-4" style={{ background: "#FDF0F5" }}>
-            <p className="font-display font-semibold text-base md:text-lg italic" style={{ color: "#72243E" }}>
-              "I do not just design AI experiences. I live inside them."
-            </p>
           </div>
         </div>
       </div>
