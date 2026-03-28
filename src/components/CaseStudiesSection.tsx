@@ -6,21 +6,27 @@ const caseStudies = [
     description:
       "An end-to-end experience for an AI agent across mobile, desktop, and ambient — seamless handoffs, consistent context, one beautiful thread.",
     tags: ["AI Agent UX", "Multi-Surface", "Systems Design"],
-    accent: "bg-primary",
+    accentGradient: "from-primary/60 to-primary/20",
+    accentTag: "bg-primary/15 text-primary",
+    accentLink: "text-primary",
   },
   {
     title: "GenAI Text Framework",
     description:
       "A design framework for generative text — tone calibration, transparent attribution, and graceful user control across four product surfaces.",
     tags: ["Generative AI", "Content Design", "Framework"],
-    accent: "bg-coral",
+    accentGradient: "from-coral/60 to-coral/20",
+    accentTag: "bg-coral/15 text-coral",
+    accentLink: "text-coral",
   },
   {
     title: "Prompt Engineering Studio",
     description:
       "An internal tool empowering non-technical teams to craft, test, and refine prompts — cutting iteration time by 60%.",
     tags: ["Developer Tools", "Prompt Design", "Internal Product"],
-    accent: "bg-rose",
+    accentGradient: "from-rose/60 to-rose/20",
+    accentTag: "bg-rose/15 text-rose",
+    accentLink: "text-rose",
   },
 ];
 
@@ -28,8 +34,8 @@ const CaseStudiesSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="case-studies" className="py-24 md:py-32 bg-secondary/50 relative overflow-hidden" ref={ref}>
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
+    <section id="case-studies" className="py-24 md:py-32 bg-background" ref={ref}>
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div
           className={`mb-16 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -43,36 +49,45 @@ const CaseStudiesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Horizontal scroll on mobile, 3-col grid on desktop */}
+        <div className="flex lg:grid lg:grid-cols-3 gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-4 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0">
           {caseStudies.map((study, i) => (
             <div
               key={study.title}
-              className={`group relative bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer ${
+              className={`group flex-shrink-0 w-[85vw] sm:w-[70vw] lg:w-auto snap-start bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500 cursor-pointer flex flex-col ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               }`}
               style={{
                 transitionDelay: isVisible ? `${(i + 1) * 150}ms` : "0ms",
               }}
             >
-              <div className={`h-1.5 ${study.accent} w-full`} />
+              {/* Visual placeholder area */}
+              <div className={`w-full h-[200px] bg-gradient-to-br ${study.accentGradient} rounded-t-2xl`} />
 
-              <div className="p-8">
-                <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-3 group-hover:text-primary transition-colors">
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-2 group-hover:text-primary transition-colors">
                   {study.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {study.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
+
+                {/* Tags — right below title */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
                   {study.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-medium bg-secondary text-muted-foreground px-3 py-1 rounded-full"
+                      className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${study.accentTag}`}
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
+
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
+                  {study.description}
+                </p>
+
+                <a href="#" className={`font-display font-semibold text-sm ${study.accentLink} hover:underline`}>
+                  View Case Study →
+                </a>
               </div>
             </div>
           ))}
