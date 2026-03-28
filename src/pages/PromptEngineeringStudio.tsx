@@ -53,7 +53,7 @@ const PromptEngineeringStudio = () => {
       </nav>
 
       {/* 1. Hero */}
-      <section className="relative pt-16" style={{ background: "#1a1a1a" }}>
+      <section className="relative pt-16 bg-foreground">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36">
           <Section>
             <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white mb-8">
@@ -89,7 +89,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 3. The Insight */}
-      <section style={{ background: "#FDF6EC" }}>
+      <section className="bg-rose/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>THE INSIGHT</PinkLabel>
@@ -125,7 +125,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 5. A New Way of Working */}
-      <section style={{ background: "#1a1a1a" }}>
+      <section className="bg-foreground">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>PROCESS</PinkLabel>
@@ -163,7 +163,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 7. What Happened Next */}
-      <section style={{ background: "#FDF6EC" }}>
+      <section className="bg-rose/10">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>OUTCOME</PinkLabel>
@@ -175,7 +175,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 8. What I Learned */}
-      <section style={{ background: "#1a1a1a" }}>
+      <section className="bg-foreground">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36">
           <Section>
             <p className="font-display italic text-white text-2xl md:text-3xl lg:text-4xl text-center leading-snug max-w-3xl mx-auto">
