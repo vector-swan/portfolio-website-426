@@ -24,7 +24,7 @@ const HowIWorkSection = () => {
           }`}
         >
           <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl text-foreground">
-            AI is not just what I design. It is how I work.
+            I work in AI. I build with AI. I design for AI.
           </h2>
         </div>
 
