@@ -5,46 +5,46 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Animated gradient mesh blobs */}
+      {/* Animated gradient mesh blobs — reduced blur for visible motion */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute rounded-full"
           style={{
-            width: 600, height: 600,
-            top: "-15%", left: "-10%",
-            background: "radial-gradient(circle, hsla(340,72%,72%,0.35) 0%, transparent 70%)",
-            filter: "blur(80px)",
-            animation: "mesh-drift-1 10s ease-in-out infinite",
-          }}
-        />
-        <div
-          className="absolute rounded-full"
-          style={{
             width: 500, height: 500,
-            bottom: "0%", right: "-5%",
-            background: "radial-gradient(circle, hsla(340,65%,60%,0.3) 0%, transparent 70%)",
-            filter: "blur(70px)",
-            animation: "mesh-drift-2 12s ease-in-out infinite",
+            top: "-10%", left: "-5%",
+            background: "radial-gradient(circle, hsla(340,72%,72%,0.3) 0%, hsla(340,72%,72%,0.08) 50%, transparent 70%)",
+            filter: "blur(40px)",
+            animation: "mesh-drift-1 8s ease-in-out infinite",
           }}
         />
         <div
           className="absolute rounded-full"
           style={{
-            width: 450, height: 450,
-            top: "20%", right: "10%",
-            background: "radial-gradient(circle, hsla(220,60%,55%,0.25) 0%, transparent 70%)",
-            filter: "blur(70px)",
-            animation: "mesh-drift-3 9s ease-in-out infinite",
+            width: 420, height: 420,
+            bottom: "5%", right: "-3%",
+            background: "radial-gradient(circle, hsla(340,65%,60%,0.25) 0%, hsla(340,65%,60%,0.06) 50%, transparent 70%)",
+            filter: "blur(35px)",
+            animation: "mesh-drift-2 10s ease-in-out infinite",
           }}
         />
         <div
           className="absolute rounded-full"
           style={{
-            width: 400, height: 400,
-            bottom: "10%", left: "25%",
-            background: "radial-gradient(circle, hsla(340,72%,72%,0.25) 0%, transparent 70%)",
-            filter: "blur(60px)",
-            animation: "mesh-drift-4 11s ease-in-out infinite",
+            width: 380, height: 380,
+            top: "25%", right: "12%",
+            background: "radial-gradient(circle, hsla(220,60%,55%,0.2) 0%, hsla(220,60%,55%,0.05) 50%, transparent 70%)",
+            filter: "blur(35px)",
+            animation: "mesh-drift-3 7s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 340, height: 340,
+            bottom: "15%", left: "30%",
+            background: "radial-gradient(circle, hsla(340,72%,72%,0.22) 0%, hsla(340,72%,72%,0.06) 50%, transparent 70%)",
+            filter: "blur(30px)",
+            animation: "mesh-drift-4 9s ease-in-out infinite",
           }}
         />
       </div>
