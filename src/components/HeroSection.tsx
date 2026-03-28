@@ -14,7 +14,7 @@ const HeroSection = () => {
             top: "-15%", left: "-10%",
             background: "radial-gradient(circle, hsla(340,72%,72%,0.35) 0%, transparent 70%)",
             filter: "blur(80px)",
-            animation: "mesh-drift-1 24s ease-in-out infinite",
+            animation: "mesh-drift-1 10s ease-in-out infinite",
           }}
         />
         <div
@@ -24,7 +24,7 @@ const HeroSection = () => {
             bottom: "0%", right: "-5%",
             background: "radial-gradient(circle, hsla(340,65%,60%,0.3) 0%, transparent 70%)",
             filter: "blur(70px)",
-            animation: "mesh-drift-2 28s ease-in-out infinite",
+            animation: "mesh-drift-2 12s ease-in-out infinite",
           }}
         />
         <div
@@ -34,7 +34,7 @@ const HeroSection = () => {
             top: "20%", right: "10%",
             background: "radial-gradient(circle, hsla(220,60%,55%,0.25) 0%, transparent 70%)",
             filter: "blur(70px)",
-            animation: "mesh-drift-3 22s ease-in-out infinite",
+            animation: "mesh-drift-3 9s ease-in-out infinite",
           }}
         />
         <div
