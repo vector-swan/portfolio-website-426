@@ -135,14 +135,15 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 5. A New Way of Working */}
-      <section className="bg-foreground">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
+      <section className="relative overflow-hidden" style={{ background: "#FAFAFA", backgroundImage: "none" }}>
+        <SoftMeshBg />
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28 relative z-10">
           <Section>
             <PinkLabel>PROCESS</PinkLabel>
-            <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-6">
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
               Seeing it built is faster than designing it blind.
             </h2>
-            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed">
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
               Understanding LLM evaluations was hard. Rather than wireframe something I did not fully grasp, an engineer built a working prototype in v0 so I could see how it functioned first. That changed how I work. For complex technical concepts, seeing the functionality first is faster than designing something I cannot fully understand yet.
             </p>
           </Section>
@@ -185,10 +186,11 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 8. What I Learned */}
-      <section className="bg-foreground">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <section className="relative overflow-hidden" style={{ background: "#FAFAFA", backgroundImage: "none" }}>
+        <SoftMeshBg />
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36 relative z-10">
           <Section>
-            <p className="font-display italic text-white text-2xl md:text-3xl lg:text-4xl text-center leading-snug max-w-3xl mx-auto">
+            <p className="font-display italic text-foreground text-2xl md:text-3xl lg:text-4xl text-center leading-snug max-w-3xl mx-auto">
               "The fastest way to understand a new technology is to design for someone who knows even less than you do."
             </p>
           </Section>
