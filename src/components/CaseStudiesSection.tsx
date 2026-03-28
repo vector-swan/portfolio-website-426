@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 
 const caseStudies = [
   {
+    title: "Prompt Engineering Studio",
+    description:
+      "An internal tool empowering non-technical teams to craft, test, and refine prompts — cutting iteration time by 60%.",
+    tags: ["Developer Tools", "Prompt Design", "Internal Product"],
+    accentGradient: "from-rose/60 to-rose/20",
+    accentTag: "bg-rose/15 text-rose",
+    accentLink: "text-rose",
+    href: "/prompt-engineering-studio",
+  },
+  {
     title: "Multi-Surface Agent Design",
     description:
       "An end-to-end experience for an AI agent across mobile, desktop, and ambient — seamless handoffs, consistent context, one beautiful thread.",
@@ -21,16 +31,6 @@ const caseStudies = [
     accentTag: "bg-coral/15 text-coral",
     accentLink: "text-coral",
     href: "/genai-text-framework",
-  },
-  {
-    title: "Prompt Engineering Studio",
-    description:
-      "An internal tool empowering non-technical teams to craft, test, and refine prompts — cutting iteration time by 60%.",
-    tags: ["Developer Tools", "Prompt Design", "Internal Product"],
-    accentGradient: "from-rose/60 to-rose/20",
-    accentTag: "bg-rose/15 text-rose",
-    accentLink: "text-rose",
-    href: "/prompt-engineering-studio",
   },
 ];
 
