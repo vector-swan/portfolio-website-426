@@ -89,7 +89,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 2. The Problem */}
-      <section className="bg-white">
+      <section className="bg-white" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>THE PROBLEM</PinkLabel>
@@ -119,7 +119,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 4. What I Built */}
-      <section className="bg-white">
+      <section className="bg-white" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>WHAT I BUILT</PinkLabel>
@@ -156,7 +156,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 6. The Numbers */}
-      <section className="bg-white">
+      <section className="bg-white" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>IMPACT</PinkLabel>
@@ -203,7 +203,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 9. Footer Nav */}
-      <section className="bg-white border-t border-border">
+      <section className="bg-white border-t border-border" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between">
           <Link
             to="/#case-studies"
