@@ -1,4 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Link } from "react-router-dom";
 
 const caseStudies = [
   {
@@ -27,6 +28,7 @@ const caseStudies = [
     accentGradient: "from-rose/60 to-rose/20",
     accentTag: "bg-rose/15 text-rose",
     accentLink: "text-rose",
+    href: "/prompt-engineering-studio",
   },
 ];
 
@@ -85,9 +87,15 @@ const CaseStudiesSection = () => {
                   {study.description}
                 </p>
 
-                <a href="#" className={`font-display font-semibold text-sm ${study.accentLink} hover:underline`}>
-                  View Case Study →
-                </a>
+                {study.href ? (
+                  <Link to={study.href} className={`font-display font-semibold text-sm ${study.accentLink} hover:underline`}>
+                    View Case Study →
+                  </Link>
+                ) : (
+                  <span className={`font-display font-semibold text-sm ${study.accentLink} opacity-50`}>
+                    Coming Soon
+                  </span>
+                )}
               </div>
             </div>
           ))}
