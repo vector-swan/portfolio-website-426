@@ -146,7 +146,7 @@ const PromptEngineeringStudio = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {features.map((f) => (
-                <div key={f.num} className="bg-secondary/50 rounded-xl p-6">
+                <div key={f.num} className="bg-rose/10 rounded-xl p-6">
                   <span className="text-coral font-display font-bold text-lg">{f.num}</span>
                   <h3 className="font-display font-bold text-lg text-foreground mt-2 mb-2">{f.name}</h3>
                   <p className="font-body text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
