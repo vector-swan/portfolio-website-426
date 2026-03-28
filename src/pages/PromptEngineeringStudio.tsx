@@ -13,6 +13,15 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
   );
 };
 
+const SoftMeshBg = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute rounded-full" style={{ width: 600, height: 600, top: "-15%", left: "-10%", background: "radial-gradient(circle, hsla(340,72%,72%,0.12) 0%, transparent 70%)", filter: "blur(80px)", animation: "mesh-drift-1 14s ease-in-out infinite" }} />
+    <div className="absolute rounded-full" style={{ width: 500, height: 500, bottom: "0%", right: "-5%", background: "radial-gradient(circle, hsla(340,65%,60%,0.1) 0%, transparent 70%)", filter: "blur(70px)", animation: "mesh-drift-2 16s ease-in-out infinite" }} />
+    <div className="absolute rounded-full" style={{ width: 450, height: 450, top: "20%", right: "10%", background: "radial-gradient(circle, hsla(220,60%,55%,0.1) 0%, transparent 70%)", filter: "blur(70px)", animation: "mesh-drift-3 12s ease-in-out infinite" }} />
+    <div className="absolute rounded-full" style={{ width: 400, height: 400, bottom: "10%", left: "25%", background: "radial-gradient(circle, hsla(340,72%,72%,0.08) 0%, transparent 70%)", filter: "blur(60px)", animation: "mesh-drift-4 15s ease-in-out infinite" }} />
+  </div>
+);
+
 const PinkLabel = ({ children }: { children: React.ReactNode }) => (
   <p className="text-coral font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
     {children}
@@ -53,50 +62,18 @@ const PromptEngineeringStudio = () => {
       </nav>
 
       {/* 1. Hero */}
-      <section className="relative pt-16 bg-foreground overflow-hidden">
-        {/* Gradient mesh blobs */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 500, height: 500,
-              top: "-10%", left: "-5%",
-              background: "radial-gradient(circle, hsla(340,65%,45%,0.4) 0%, transparent 70%)",
-              filter: "blur(80px)",
-              animation: "mesh-drift-1 8s ease-in-out infinite",
-            }}
-          />
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 450, height: 450,
-              bottom: "-5%", right: "0%",
-              background: "radial-gradient(circle, hsla(340,60%,40%,0.35) 0%, transparent 70%)",
-              filter: "blur(70px)",
-              animation: "mesh-drift-2 10s ease-in-out infinite",
-            }}
-          />
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 400, height: 400,
-              top: "15%", right: "15%",
-              background: "radial-gradient(circle, hsla(220,50%,40%,0.3) 0%, transparent 70%)",
-              filter: "blur(70px)",
-              animation: "mesh-drift-3 7s ease-in-out infinite",
-            }}
-          />
-        </div>
+      <section className="relative pt-16 overflow-hidden" style={{ background: "#FAFAFA", backgroundImage: "none" }}>
+        <SoftMeshBg />
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36 relative z-10">
           <Section>
-            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white mb-8">
+            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground mb-8">
               Designing the tool that taught Workday how to prompt.
             </h1>
             <div className="flex flex-wrap gap-3">
               {["Sole Designer", "2023–2024", "Team: 3 to 20+"].map((chip) => (
                 <span
                   key={chip}
-                  className="text-xs text-white/80 font-body border border-white/20 rounded-full px-4 py-1.5"
+                  className="text-xs text-muted-foreground font-body border border-border rounded-full px-4 py-1.5"
                 >
                   {chip}
                 </span>
@@ -158,14 +135,15 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 5. A New Way of Working */}
-      <section className="bg-foreground">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
+      <section className="relative overflow-hidden" style={{ background: "#FAFAFA", backgroundImage: "none" }}>
+        <SoftMeshBg />
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28 relative z-10">
           <Section>
             <PinkLabel>PROCESS</PinkLabel>
-            <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-6">
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
               Seeing it built is faster than designing it blind.
             </h2>
-            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed">
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
               Understanding LLM evaluations was hard. Rather than wireframe something I did not fully grasp, an engineer built a working prototype in v0 so I could see how it functioned first. That changed how I work. For complex technical concepts, seeing the functionality first is faster than designing something I cannot fully understand yet.
             </p>
           </Section>
@@ -208,10 +186,11 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 8. What I Learned */}
-      <section className="bg-foreground">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36">
+      <section className="relative overflow-hidden" style={{ background: "#FAFAFA", backgroundImage: "none" }}>
+        <SoftMeshBg />
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36 relative z-10">
           <Section>
-            <p className="font-display italic text-white text-2xl md:text-3xl lg:text-4xl text-center leading-snug max-w-3xl mx-auto">
+            <p className="font-display italic text-foreground text-2xl md:text-3xl lg:text-4xl text-center leading-snug max-w-3xl mx-auto">
               "The fastest way to understand a new technology is to design for someone who knows even less than you do."
             </p>
           </Section>
