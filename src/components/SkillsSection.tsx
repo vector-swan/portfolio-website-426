@@ -19,7 +19,7 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="py-24 md:py-32 relative overflow-hidden" ref={ref}>
-      <FloralAccent1 className="absolute -bottom-6 right-16 w-32 h-32 text-rose/15" />
+      <FloralAccent1 className="absolute -bottom-6 right-16 w-32 h-32 text-rose/10" />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
@@ -28,8 +28,8 @@ const SkillsSection = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="font-display font-800 text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-              Expertise
+            <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
+              What I <em className="italic">love</em>
             </h2>
             <p className="text-muted-foreground text-lg">
               The things I think about every day — and have shipped real products around.
@@ -51,7 +51,7 @@ const SkillsSection = () => {
                 return (
                   <span
                     key={skill}
-                    className={`font-display font-bold text-sm md:text-base px-5 py-2.5 rounded-full transition-all duration-200 hover:scale-105 cursor-default ${colors[i % 3]}`}
+                    className={`font-display font-semibold text-sm md:text-base px-5 py-2.5 rounded-full transition-all duration-200 hover:scale-105 cursor-default ${colors[i % 3]}`}
                     style={{ transitionDelay: isVisible ? `${i * 60}ms` : "0ms" }}
                   >
                     {skill}

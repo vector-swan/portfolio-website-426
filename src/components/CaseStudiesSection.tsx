@@ -5,21 +5,21 @@ const caseStudies = [
   {
     title: "Multi-Surface Agent Design",
     description:
-      "Designed the end-to-end experience for an AI agent that operates across mobile, desktop, and ambient devices — with consistent context and graceful handoffs.",
+      "An end-to-end experience for an AI agent across mobile, desktop, and ambient — seamless handoffs, consistent context, one beautiful thread.",
     tags: ["AI Agent UX", "Multi-Surface", "Systems Design"],
     accent: "bg-primary",
   },
   {
     title: "GenAI Text Framework",
     description:
-      "Built a design framework for generative text interfaces — addressing tone calibration, attribution, and user control across 4 product surfaces.",
+      "A design framework for generative text — tone calibration, transparent attribution, and graceful user control across four product surfaces.",
     tags: ["Generative AI", "Content Design", "Framework"],
     accent: "bg-coral",
   },
   {
     title: "Prompt Engineering Studio",
     description:
-      "Led design for an internal tool that lets non-technical teams craft, test, and iterate on prompts — reducing prompt iteration cycles by 60%.",
+      "An internal tool empowering non-technical teams to craft, test, and refine prompts — cutting iteration time by 60%.",
     tags: ["Developer Tools", "Prompt Design", "Internal Product"],
     accent: "bg-rose",
   },
@@ -30,8 +30,8 @@ const CaseStudiesSection = () => {
 
   return (
     <section id="case-studies" className="py-24 md:py-32 bg-secondary/50 relative overflow-hidden" ref={ref}>
-      <FloralLeaf className="absolute top-16 right-12 w-10 h-16 text-coral/20 rotate-12" />
-      <FloralAccent3 className="absolute bottom-12 left-8 w-20 h-20 text-rose/20" />
+      <FloralLeaf className="absolute top-16 right-12 w-10 h-16 text-coral/15 rotate-12" />
+      <FloralAccent3 className="absolute bottom-12 left-8 w-20 h-20 text-rose/15" />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div
@@ -39,11 +39,11 @@ const CaseStudiesSection = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display font-800 text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-            Selected Work
+          <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
+            Selected <em className="italic">Work</em>
           </h2>
           <p className="text-muted-foreground text-lg max-w-lg">
-            Case studies from the intersection of design, AI, and real human needs.
+            Stories from the intersection of design, AI, and real human connection.
           </p>
         </div>
 
@@ -58,12 +58,10 @@ const CaseStudiesSection = () => {
                 transitionDelay: isVisible ? `${(i + 1) * 150}ms` : "0ms",
               }}
             >
-              {/* Accent bar */}
               <div className={`h-1.5 ${study.accent} w-full`} />
 
               <div className="p-8 relative">
-                {/* Subtle floral in card corner */}
-                <FloralAccent3 className="absolute -top-2 -right-2 w-12 h-12 text-rose/10 group-hover:text-rose/20 transition-colors duration-500" />
+                <FloralAccent3 className="absolute -top-2 -right-2 w-12 h-12 text-rose/8 group-hover:text-rose/15 transition-colors duration-500" />
                 
                 <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-3 group-hover:text-primary transition-colors">
                   {study.title}
