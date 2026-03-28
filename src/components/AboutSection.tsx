@@ -1,5 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { GeometricAccent } from "@/components/GeometricAccents";
+
 
 const AboutSection = () => {
   const { ref, isVisible } = useScrollReveal();

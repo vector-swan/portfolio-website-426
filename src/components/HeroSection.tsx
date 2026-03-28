@@ -1,4 +1,4 @@
-import { GridDotPattern as _unused } from "@/components/GeometricAccents";
+
 
 const HeroSection = () => {
   const scrollToWork = () => {
