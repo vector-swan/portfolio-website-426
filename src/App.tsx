@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import PromptEngineeringStudio from "./pages/PromptEngineeringStudio.tsx";
 import MultiSurfaceAgentDesign from "./pages/MultiSurfaceAgentDesign.tsx";
+import GenAITextFramework from "./pages/GenAITextFramework.tsx";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/prompt-engineering-studio" element={<PromptEngineeringStudio />} />
           <Route path="/multi-surface-agent-design" element={<MultiSurfaceAgentDesign />} />
+          <Route path="/genai-text-framework" element={<GenAITextFramework />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
