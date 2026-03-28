@@ -32,8 +32,8 @@ const Index = () => {
       </nav>
 
       <HeroSection />
-      <AboutSection />
       <CaseStudiesSection />
+      <AboutSection />
       <HowIWorkSection />
       <SkillsSection />
       <ContactSection />
