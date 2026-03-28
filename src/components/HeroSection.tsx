@@ -1,3 +1,37 @@
+const meshBlobStyles: React.CSSProperties[] = [
+  {
+    width: 500, height: 500,
+    top: "-10%", left: "-5%",
+    background: "radial-gradient(circle, hsl(340 72% 72%) 0%, transparent 70%)",
+    opacity: 0.18,
+    filter: "blur(120px)",
+    animation: "mesh-drift-1 24s ease-in-out infinite",
+  },
+  {
+    width: 450, height: 450,
+    bottom: "5%", right: "-8%",
+    background: "radial-gradient(circle, hsl(340 65% 60%) 0%, transparent 70%)",
+    opacity: 0.15,
+    filter: "blur(110px)",
+    animation: "mesh-drift-2 28s ease-in-out infinite",
+  },
+  {
+    width: 400, height: 400,
+    top: "30%", right: "15%",
+    background: "radial-gradient(circle, hsl(220 60% 55%) 0%, transparent 70%)",
+    opacity: 0.12,
+    filter: "blur(100px)",
+    animation: "mesh-drift-3 22s ease-in-out infinite",
+  },
+  {
+    width: 350, height: 350,
+    bottom: "-5%", left: "20%",
+    background: "radial-gradient(circle, hsl(340 72% 72%) 0%, transparent 70%)",
+    opacity: 0.14,
+    filter: "blur(100px)",
+    animation: "mesh-drift-4 26s ease-in-out infinite",
+  },
+];
 
 const HeroSection = () => {
   const scrollToWork = () => {
@@ -8,10 +42,13 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Animated gradient mesh blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-[500px] h-[500px] rounded-full opacity-[0.18] blur-[120px] bg-[radial-gradient(circle,hsl(340_72%_72%)_0%,transparent_70%)] top-[-10%] left-[-5%] animate-[mesh-drift-1_24s_ease-in-out_infinite]" />
-        <div className="absolute w-[450px] h-[450px] rounded-full opacity-[0.15] blur-[110px] bg-[radial-gradient(circle,hsl(340_65%_60%)_0%,transparent_70%)] bottom-[5%] right-[-8%] animate-[mesh-drift-2_28s_ease-in-out_infinite]" />
-        <div className="absolute w-[400px] h-[400px] rounded-full opacity-[0.12] blur-[100px] bg-[radial-gradient(circle,hsl(220_60%_55%)_0%,transparent_70%)] top-[30%] right-[15%] animate-[mesh-drift-3_22s_ease-in-out_infinite]" />
-        <div className="absolute w-[350px] h-[350px] rounded-full opacity-[0.14] blur-[100px] bg-[radial-gradient(circle,hsl(340_72%_72%)_0%,transparent_70%)] bottom-[-5%] left-[20%] animate-[mesh-drift-4_26s_ease-in-out_infinite]" />
+        {meshBlobStyles.map((style, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full"
+            style={style}
+          />
+        ))}
       </div>
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
