@@ -14,9 +14,9 @@ const HeroSection = () => {
 
       {/* Floral decorations */}
       <FloralAccent1 className="absolute top-28 right-16 w-28 h-28 text-rose animate-float opacity-60" />
-      <FloralAccent3 className="absolute bottom-36 right-1/4 w-16 h-16 text-coral animate-float opacity-50" style={{ animationDelay: "3s" } as React.CSSProperties} />
+      <FloralAccent3 className="absolute bottom-36 right-1/4 w-16 h-16 text-coral animate-float opacity-50" style={{ animationDelay: "3s" }} />
       <FloralLeaf className="absolute top-48 right-[12%] w-10 h-16 text-primary/60 rotate-[30deg]" />
-      <FloralLeaf className="absolute bottom-24 left-12 w-8 h-14 text-rose/50 -rotate-[20deg] animate-float" style={{ animationDelay: "4s" } as React.CSSProperties} />
+      <FloralLeaf className="absolute bottom-24 left-12 w-8 h-14 text-rose/50 -rotate-[20deg] animate-float" style={{ animationDelay: "4s" }} />
 
       {/* Small dots */}
       <div className="absolute top-40 right-1/4 w-3 h-3 rounded-full bg-rose" />
