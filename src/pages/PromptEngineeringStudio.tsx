@@ -62,50 +62,18 @@ const PromptEngineeringStudio = () => {
       </nav>
 
       {/* 1. Hero */}
-      <section className="relative pt-16 bg-foreground overflow-hidden">
-        {/* Gradient mesh blobs */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 500, height: 500,
-              top: "-10%", left: "-5%",
-              background: "radial-gradient(circle, hsla(340,65%,45%,0.4) 0%, transparent 70%)",
-              filter: "blur(80px)",
-              animation: "mesh-drift-1 8s ease-in-out infinite",
-            }}
-          />
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 450, height: 450,
-              bottom: "-5%", right: "0%",
-              background: "radial-gradient(circle, hsla(340,60%,40%,0.35) 0%, transparent 70%)",
-              filter: "blur(70px)",
-              animation: "mesh-drift-2 10s ease-in-out infinite",
-            }}
-          />
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 400, height: 400,
-              top: "15%", right: "15%",
-              background: "radial-gradient(circle, hsla(220,50%,40%,0.3) 0%, transparent 70%)",
-              filter: "blur(70px)",
-              animation: "mesh-drift-3 7s ease-in-out infinite",
-            }}
-          />
-        </div>
+      <section className="relative pt-16 overflow-hidden" style={{ background: "#FAFAFA", backgroundImage: "none" }}>
+        <SoftMeshBg />
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36 relative z-10">
           <Section>
-            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white mb-8">
+            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground mb-8">
               Designing the tool that taught Workday how to prompt.
             </h1>
             <div className="flex flex-wrap gap-3">
               {["Sole Designer", "2023–2024", "Team: 3 to 20+"].map((chip) => (
                 <span
                   key={chip}
-                  className="text-xs text-white/80 font-body border border-white/20 rounded-full px-4 py-1.5"
+                  className="text-xs text-muted-foreground font-body border border-border rounded-full px-4 py-1.5"
                 >
                   {chip}
                 </span>
