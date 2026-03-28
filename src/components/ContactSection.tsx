@@ -11,9 +11,12 @@ const ContactSection = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl mb-6">
-            The future of AI design is human-centered. Let's build it together.
+          <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl mb-4">
+            The future of AI design is human-centered.
           </h2>
+          <p className="text-coral font-body font-medium text-base md:text-lg tracking-widest uppercase mb-6">
+            Let's build it together.
+          </p>
           <p className="text-lg md:text-xl opacity-70 mb-10 leading-relaxed">
             I'm drawn to ambitious, human-centered AI challenges. If you're building something at the edge of
             what's possible, I'd love to be part of the story.
