@@ -1,50 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-
-  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    <div
-      className="absolute rounded-full"
-      style={{
-        width: 600, height: 600,
-        top: "-15%", left: "-10%",
-        background: "radial-gradient(circle, hsla(340,72%,72%,0.12) 0%, transparent 70%)",
-        filter: "blur(80px)",
-        animation: "mesh-drift-1 14s ease-in-out infinite",
-      }}
-    />
-    <div
-      className="absolute rounded-full"
-      style={{
-        width: 500, height: 500,
-        bottom: "0%", right: "-5%",
-        background: "radial-gradient(circle, hsla(340,65%,60%,0.1) 0%, transparent 70%)",
-        filter: "blur(70px)",
-        animation: "mesh-drift-2 16s ease-in-out infinite",
-      }}
-    />
-    <div
-      className="absolute rounded-full"
-      style={{
-        width: 450, height: 450,
-        top: "20%", right: "10%",
-        background: "radial-gradient(circle, hsla(220,60%,55%,0.1) 0%, transparent 70%)",
-        filter: "blur(70px)",
-        animation: "mesh-drift-3 12s ease-in-out infinite",
-      }}
-    />
-    <div
-      className="absolute rounded-full"
-      style={{
-        width: 400, height: 400,
-        bottom: "10%", left: "25%",
-        background: "radial-gradient(circle, hsla(340,72%,72%,0.08) 0%, transparent 70%)",
-        filter: "blur(60px)",
-        animation: "mesh-drift-4 15s ease-in-out infinite",
-      }}
-    />
-  </div>
-);
-
 const ContactSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
@@ -55,12 +10,12 @@ const ContactSection = () => {
       style={{ background: "hsl(220, 60%, 45%)", backgroundImage: "none" }}
       ref={ref}
     >
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div className="absolute rounded-full" style={{ width: 600, height: 600, top: "-15%", left: "-10%", background: "radial-gradient(circle, hsla(340,72%,72%,0.2) 0%, transparent 70%)", filter: "blur(80px)", animation: "mesh-drift-1 14s ease-in-out infinite" }} />
-      <div className="absolute rounded-full" style={{ width: 500, height: 500, bottom: "0%", right: "-5%", background: "radial-gradient(circle, hsla(260,60%,70%,0.2) 0%, transparent 70%)", filter: "blur(70px)", animation: "mesh-drift-2 16s ease-in-out infinite" }} />
-      <div className="absolute rounded-full" style={{ width: 450, height: 450, top: "20%", right: "10%", background: "radial-gradient(circle, hsla(200,70%,70%,0.15) 0%, transparent 70%)", filter: "blur(70px)", animation: "mesh-drift-3 12s ease-in-out infinite" }} />
-      <div className="absolute rounded-full" style={{ width: 400, height: 400, bottom: "10%", left: "25%", background: "radial-gradient(circle, hsla(340,65%,65%,0.15) 0%, transparent 70%)", filter: "blur(60px)", animation: "mesh-drift-4 15s ease-in-out infinite" }} />
-    </div>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute rounded-full" style={{ width: 600, height: 600, top: "-15%", left: "-10%", background: "radial-gradient(circle, hsla(340,72%,72%,0.2) 0%, transparent 70%)", filter: "blur(80px)", animation: "mesh-drift-1 14s ease-in-out infinite" }} />
+        <div className="absolute rounded-full" style={{ width: 500, height: 500, bottom: "0%", right: "-5%", background: "radial-gradient(circle, hsla(260,60%,70%,0.2) 0%, transparent 70%)", filter: "blur(70px)", animation: "mesh-drift-2 16s ease-in-out infinite" }} />
+        <div className="absolute rounded-full" style={{ width: 450, height: 450, top: "20%", right: "10%", background: "radial-gradient(circle, hsla(200,70%,70%,0.15) 0%, transparent 70%)", filter: "blur(70px)", animation: "mesh-drift-3 12s ease-in-out infinite" }} />
+        <div className="absolute rounded-full" style={{ width: 400, height: 400, bottom: "10%", left: "25%", background: "radial-gradient(circle, hsla(340,65%,65%,0.15) 0%, transparent 70%)", filter: "blur(60px)", animation: "mesh-drift-4 15s ease-in-out infinite" }} />
+      </div>
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         <div
           className={`max-w-2xl transition-all duration-700 ${
