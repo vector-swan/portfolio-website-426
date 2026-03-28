@@ -1,5 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
+import miaPhoto from "@/assets/mia-photo.jpeg";
 
 const AboutSection = () => {
   const { ref, isVisible } = useScrollReveal();
@@ -16,7 +16,7 @@ const AboutSection = () => {
             }`}
           >
             <div className="relative">
-              <div className="w-full aspect-[3/4] rounded-2xl bg-gradient-to-br from-primary/80 via-rose/50 to-coral/40" />
+              <img src={miaPhoto} alt="Mia Donnell" className="w-full aspect-[3/4] rounded-2xl object-cover object-top" />
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl bg-rose/60" />
             </div>
           </div>
