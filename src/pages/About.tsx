@@ -109,11 +109,7 @@ const About = () => {
               ))}
             </div>
 
-            <div className="mt-8 rounded-xl px-6 py-4 max-w-3xl" style={{ background: "#FDF0F5" }}>
-              <p className="font-display font-semibold text-base md:text-lg italic" style={{ color: "#72243E" }}>
-                "I do not just design AI experiences. I live inside them."
-              </p>
-            </div>
+
           </Section>
         </div>
       </section>
