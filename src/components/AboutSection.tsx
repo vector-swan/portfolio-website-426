@@ -51,20 +51,47 @@ const AboutSection = () => {
               isVisible2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <h3 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-6">
+            <h3 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-foreground mb-10">
               How I actually work
             </h3>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              I use AI every day, not just in the products I design but in how I do my job. I keep a personal knowledge base built on AI that tracks meeting notes, open decisions, project context, and goals across everything I am working on. It means I can move faster and think more clearly across multiple complex projects at once.
-            </p>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-              Outside of work I build small agents to stay sharp. Project Coach is a side project I built to help with goal setting and accountability. I also built a job search agent for my husband, a practical tool that helped him manage applications, prep for interviews, and track follow-ups. Neither is polished. Both taught me things I brought back into my actual design work.
-            </p>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
-              I also co-founded the AI Makers Club at Workday, a group where designers learn to build with tools like Lovable and v0. Teaching others how to use AI tools has made me better at using them myself.
-            </p>
-            <div className="bg-rose/10 rounded-xl px-6 py-4 inline-block">
-              <p className="font-display font-semibold text-foreground text-base md:text-lg italic">
+
+            <div className="space-y-0">
+              {[
+                { num: "01", title: "Daily AI practice", body: "I use AI every day, not just in the products I design but in how I do my job. I keep a personal knowledge base that tracks meeting notes, open decisions, project context, and goals across everything I am working on. It means I can move faster and think more clearly across multiple complex projects at once." },
+                { num: "02", title: "Building to learn", body: "Outside of work I build small agents to stay sharp. Project Coach is a side project I built to help with goal setting and accountability. I also built a job search agent for my husband, a practical tool that helped him manage applications, prep for interviews, and track follow-ups. Neither is polished. Both taught me things I brought back into my actual design work." },
+                { num: "03", title: "AI Makers Club", body: "I co-founded a group at Workday where designers learn to build with tools like Lovable and v0. Teaching others how to use AI tools has made me better at using them myself." },
+              ].map((item, i, arr) => (
+                <div key={item.num} className="flex gap-6">
+                  {/* Left: circle + line */}
+                  <div className="flex flex-col items-center flex-shrink-0">
+                    <div
+                      className="flex items-center justify-center rounded-full font-display font-bold text-sm"
+                      style={{
+                        width: 36,
+                        height: 36,
+                        minWidth: 36,
+                        background: "#FDF0F5",
+                        border: "2px solid #E05C8A",
+                        color: "#E05C8A",
+                      }}
+                    >
+                      {item.num}
+                    </div>
+                    {i < arr.length - 1 && (
+                      <div className="flex-1 w-px bg-border my-2" />
+                    )}
+                  </div>
+                  {/* Right: content */}
+                  <div className={`pb-8 ${i === arr.length - 1 ? "pb-0" : ""}`}>
+                    <p className="font-body font-medium text-foreground text-sm mb-1">{item.title}</p>
+                    <p className="font-body text-muted-foreground text-[13px] leading-[1.6]">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 rounded-xl px-6 py-4" style={{ background: "#FDF0F5" }}>
+              <p className="font-display font-semibold text-base md:text-lg italic" style={{ color: "#72243E" }}>
                 "I do not just design AI experiences. I live inside them."
               </p>
             </div>
