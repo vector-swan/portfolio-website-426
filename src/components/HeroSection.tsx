@@ -1,38 +1,3 @@
-const meshBlobStyles: React.CSSProperties[] = [
-  {
-    width: 500, height: 500,
-    top: "-10%", left: "-5%",
-    background: "radial-gradient(circle, hsl(340 72% 72%) 0%, transparent 70%)",
-    opacity: 0.18,
-    filter: "blur(120px)",
-    animation: "mesh-drift-1 24s ease-in-out infinite",
-  },
-  {
-    width: 450, height: 450,
-    bottom: "5%", right: "-8%",
-    background: "radial-gradient(circle, hsl(340 65% 60%) 0%, transparent 70%)",
-    opacity: 0.15,
-    filter: "blur(110px)",
-    animation: "mesh-drift-2 28s ease-in-out infinite",
-  },
-  {
-    width: 400, height: 400,
-    top: "30%", right: "15%",
-    background: "radial-gradient(circle, hsl(220 60% 55%) 0%, transparent 70%)",
-    opacity: 0.12,
-    filter: "blur(100px)",
-    animation: "mesh-drift-3 22s ease-in-out infinite",
-  },
-  {
-    width: 350, height: 350,
-    bottom: "-5%", left: "20%",
-    background: "radial-gradient(circle, hsl(340 72% 72%) 0%, transparent 70%)",
-    opacity: 0.14,
-    filter: "blur(100px)",
-    animation: "mesh-drift-4 26s ease-in-out infinite",
-  },
-];
-
 const HeroSection = () => {
   const scrollToWork = () => {
     document.getElementById("case-studies")?.scrollIntoView({ behavior: "smooth" });
@@ -41,14 +6,47 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Animated gradient mesh blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        {meshBlobStyles.map((style, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full"
-            style={style}
-          />
-        ))}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 600, height: 600,
+            top: "-15%", left: "-10%",
+            background: "radial-gradient(circle, hsla(340,72%,72%,0.35) 0%, transparent 70%)",
+            filter: "blur(80px)",
+            animation: "mesh-drift-1 24s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 500, height: 500,
+            bottom: "0%", right: "-5%",
+            background: "radial-gradient(circle, hsla(340,65%,60%,0.3) 0%, transparent 70%)",
+            filter: "blur(70px)",
+            animation: "mesh-drift-2 28s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 450, height: 450,
+            top: "20%", right: "10%",
+            background: "radial-gradient(circle, hsla(220,60%,55%,0.25) 0%, transparent 70%)",
+            filter: "blur(70px)",
+            animation: "mesh-drift-3 22s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 400, height: 400,
+            bottom: "10%", left: "25%",
+            background: "radial-gradient(circle, hsla(340,72%,72%,0.25) 0%, transparent 70%)",
+            filter: "blur(60px)",
+            animation: "mesh-drift-4 26s ease-in-out infinite",
+          }}
+        />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
