@@ -15,7 +15,6 @@ const Index = () => {
             <img src={mdLogo} alt="MD logo" className="h-8 w-8" />
             Mia Donnell<span className="text-coral">.</span>
           </a>
-          </a>
           <div className="hidden sm:flex gap-8">
             <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               About
