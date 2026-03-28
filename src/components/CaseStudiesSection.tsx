@@ -20,6 +20,7 @@ const caseStudies = [
     accentGradient: "from-coral/60 to-coral/20",
     accentTag: "bg-coral/15 text-coral",
     accentLink: "text-coral",
+    href: "/genai-text-framework",
   },
   {
     title: "Prompt Engineering Studio",
