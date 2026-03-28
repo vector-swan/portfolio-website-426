@@ -39,6 +39,26 @@ const AboutSection = () => {
               <span className="text-coral font-medium">human intuition meets machine intelligence</span>. Currently
               designing at the frontier of responsible AI.
             </p>
+
+            <div className="mt-10">
+              <h3 className="font-display font-bold text-2xl md:text-3xl text-foreground mb-5">
+                How I actually work
+              </h3>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
+                I use AI every day, not just in the products I design but in how I do my job. I keep a personal knowledge base built on AI that tracks meeting notes, open decisions, project context, and goals across everything I am working on. It means I can move faster and think more clearly across multiple complex projects at once.
+              </p>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
+                Outside of work I build small agents to stay sharp. Project Coach is a side project I built to help with goal setting and accountability. I also built a job search agent for my husband, a practical tool that helped him manage applications, prep for interviews, and track follow-ups. Neither is polished. Both taught me things I brought back into my actual design work.
+              </p>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+                I also co-founded the AI Makers Club at Workday, a group where designers learn to build with tools like Lovable and v0. Teaching others how to use AI tools has made me better at using them myself.
+              </p>
+              <div className="bg-rose/10 rounded-xl px-6 py-4 inline-block">
+                <p className="font-display font-semibold text-foreground text-base md:text-lg italic">
+                  "I do not just design AI experiences. I live inside them."
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
