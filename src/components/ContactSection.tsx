@@ -1,11 +1,15 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { FloralAccent1, FloralLeaf } from "@/components/FloralAccents";
 
 const ContactSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-foreground text-background" ref={ref}>
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+    <section id="contact" className="py-24 md:py-32 bg-foreground text-background relative overflow-hidden" ref={ref}>
+      <FloralAccent1 className="absolute top-12 right-12 w-32 h-32 text-rose/15" />
+      <FloralLeaf className="absolute bottom-8 left-16 w-10 h-16 text-coral/15 rotate-[-30deg]" />
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div
           className={`max-w-2xl transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -22,7 +26,7 @@ const ContactSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 items-start">
             <a
               href="mailto:hello@mia.design"
-              className="bg-coral text-coral-foreground font-display font-bold px-8 py-4 rounded-lg text-lg hover:scale-105 transition-transform duration-200"
+              className="bg-coral text-coral-foreground font-display font-bold px-8 py-4 rounded-full text-lg hover:scale-105 transition-transform duration-200"
             >
               Get In Touch
             </a>

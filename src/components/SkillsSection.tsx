@@ -1,4 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { FloralAccent1 } from "@/components/FloralAccents";
 
 const skills = [
   "AI Agent UX",
@@ -17,8 +18,10 @@ const SkillsSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="skills" className="py-24 md:py-32" ref={ref}>
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+    <section id="skills" className="py-24 md:py-32 relative overflow-hidden" ref={ref}>
+      <FloralAccent1 className="absolute -bottom-6 right-16 w-32 h-32 text-rose/15" />
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div
             className={`md:col-span-4 transition-all duration-700 ${
@@ -40,17 +43,15 @@ const SkillsSection = () => {
           >
             <div className="flex flex-wrap gap-3">
               {skills.map((skill, i) => {
-                const isPrimary = i % 3 === 0;
+                const colors = [
+                  "bg-primary text-primary-foreground",
+                  "bg-coral text-coral-foreground",
+                  "bg-rose text-rose-foreground",
+                ];
                 return (
                   <span
                     key={skill}
-                    className={`font-display font-bold text-sm md:text-base px-5 py-2.5 rounded-full transition-all duration-200 hover:scale-105 cursor-default ${
-                      isPrimary
-                        ? "bg-primary text-primary-foreground"
-                        : i % 3 === 1
-                        ? "bg-coral text-coral-foreground"
-                        : "bg-foreground text-background"
-                    }`}
+                    className={`font-display font-bold text-sm md:text-base px-5 py-2.5 rounded-full transition-all duration-200 hover:scale-105 cursor-default ${colors[i % 3]}`}
                     style={{ transitionDelay: isVisible ? `${i * 60}ms` : "0ms" }}
                   >
                     {skill}
