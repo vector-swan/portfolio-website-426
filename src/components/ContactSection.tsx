@@ -22,24 +22,19 @@ const ContactSection = () => {
             what's possible, I'd love to be part of the story.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-start">
+          <div className="flex flex-row gap-6 items-center">
             <a
               href="mailto:hello@mia.design"
-              className="bg-coral text-coral-foreground font-display font-semibold px-8 py-4 rounded-full text-lg hover:scale-105 transition-transform duration-200"
+              className="bg-coral text-coral-foreground font-medium px-5 py-2 rounded-full text-sm hover:scale-105 transition-transform duration-200"
             >
               Say Hello
             </a>
-            <div className="flex gap-6 items-center sm:ml-4 mt-2 sm:mt-0">
-              <a href="#" className="opacity-60 hover:opacity-100 transition-opacity text-sm font-medium">
-                LinkedIn
-              </a>
-              <a href="#" className="opacity-60 hover:opacity-100 transition-opacity text-sm font-medium">
-                Dribbble
-              </a>
-              <a href="#" className="opacity-60 hover:opacity-100 transition-opacity text-sm font-medium">
-                Read.cv
-              </a>
-            </div>
+            <a href="#" className="opacity-60 hover:opacity-100 transition-opacity text-sm font-medium">
+              LinkedIn
+            </a>
+            <a href="#" className="opacity-60 hover:opacity-100 transition-opacity text-sm font-medium">
+              Read.cv
+            </a>
           </div>
         </div>
       </div>
