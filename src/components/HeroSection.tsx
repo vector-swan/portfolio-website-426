@@ -44,7 +44,7 @@ const HeroSection = () => {
             bottom: "10%", left: "25%",
             background: "radial-gradient(circle, hsla(340,72%,72%,0.25) 0%, transparent 70%)",
             filter: "blur(60px)",
-            animation: "mesh-drift-4 26s ease-in-out infinite",
+            animation: "mesh-drift-4 11s ease-in-out infinite",
           }}
         />
       </div>
