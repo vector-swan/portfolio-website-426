@@ -1,4 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { FloralAccent3, FloralLeaf } from "@/components/FloralAccents";
 
 const caseStudies = [
   {
@@ -20,7 +21,7 @@ const caseStudies = [
     description:
       "Led design for an internal tool that lets non-technical teams craft, test, and iterate on prompts — reducing prompt iteration cycles by 60%.",
     tags: ["Developer Tools", "Prompt Design", "Internal Product"],
-    accent: "bg-primary",
+    accent: "bg-rose",
   },
 ];
 
@@ -28,8 +29,11 @@ const CaseStudiesSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="case-studies" className="py-24 md:py-32 bg-secondary/50" ref={ref}>
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+    <section id="case-studies" className="py-24 md:py-32 bg-secondary/50 relative overflow-hidden" ref={ref}>
+      <FloralLeaf className="absolute top-16 right-12 w-10 h-16 text-coral/20 rotate-12" />
+      <FloralAccent3 className="absolute bottom-12 left-8 w-20 h-20 text-rose/20" />
+
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div
           className={`mb-16 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -57,7 +61,10 @@ const CaseStudiesSection = () => {
               {/* Accent bar */}
               <div className={`h-1.5 ${study.accent} w-full`} />
 
-              <div className="p-8">
+              <div className="p-8 relative">
+                {/* Subtle floral in card corner */}
+                <FloralAccent3 className="absolute -top-2 -right-2 w-12 h-12 text-rose/10 group-hover:text-rose/20 transition-colors duration-500" />
+                
                 <h3 className="font-display font-bold text-xl md:text-2xl text-foreground mb-3 group-hover:text-primary transition-colors">
                   {study.title}
                 </h3>
