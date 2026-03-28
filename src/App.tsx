@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import PromptEngineeringStudio from "./pages/PromptEngineeringStudio.tsx";
+import MultiSurfaceAgentDesign from "./pages/MultiSurfaceAgentDesign.tsx";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/prompt-engineering-studio" element={<PromptEngineeringStudio />} />
+          <Route path="/multi-surface-agent-design" element={<MultiSurfaceAgentDesign />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

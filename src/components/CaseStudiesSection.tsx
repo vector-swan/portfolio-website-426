@@ -10,6 +10,7 @@ const caseStudies = [
     accentGradient: "from-primary/60 to-primary/20",
     accentTag: "bg-primary/15 text-primary",
     accentLink: "text-primary",
+    href: "/multi-surface-agent-design",
   },
   {
     title: "GenAI Text Framework",
