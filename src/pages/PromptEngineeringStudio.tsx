@@ -104,7 +104,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 3. The Insight */}
-      <section className="bg-rose/10" style={{ backgroundImage: "none" }}>
+      <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>THE INSIGHT</PinkLabel>
@@ -179,7 +179,7 @@ const PromptEngineeringStudio = () => {
       </section>
 
       {/* 7. What Happened Next */}
-      <section className="bg-rose/10" style={{ backgroundImage: "none" }}>
+      <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>OUTCOME</PinkLabel>
