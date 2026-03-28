@@ -12,7 +12,7 @@ const ContactSection = () => {
           }`}
         >
           <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl mb-6">
-            Let's create something <em className="italic">beautiful</em> together.
+            The future of AI design is human-centered. Let's build it together.
           </h2>
           <p className="text-lg md:text-xl opacity-70 mb-10 leading-relaxed">
             I'm drawn to ambitious, human-centered AI challenges. If you're building something at the edge of
