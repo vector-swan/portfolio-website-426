@@ -1,14 +1,10 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { FloralAccent1, FloralLeaf } from "@/components/FloralAccents";
 
 const ContactSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
     <section id="contact" className="py-24 md:py-32 bg-foreground text-background relative overflow-hidden" ref={ref}>
-      <FloralAccent1 className="absolute top-12 right-12 w-32 h-32 text-rose/10" />
-      <FloralLeaf className="absolute bottom-8 left-16 w-10 h-16 text-coral/10 rotate-[-30deg]" />
-
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div
           className={`max-w-2xl transition-all duration-700 ${

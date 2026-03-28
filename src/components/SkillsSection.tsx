@@ -1,5 +1,4 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { FloralAccent1 } from "@/components/FloralAccents";
 
 const skills = [
   "AI Agent UX",
@@ -19,8 +18,6 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="py-24 md:py-32 relative overflow-hidden" ref={ref}>
-      <FloralAccent1 className="absolute -bottom-6 right-16 w-32 h-32 text-rose/10" />
-
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div

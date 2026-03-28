@@ -1,13 +1,12 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { FloralAccent1, FloralLeaf } from "@/components/FloralAccents";
+import { GeometricAccent } from "@/components/GeometricAccents";
 
 const AboutSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden" ref={ref}>
-      <FloralAccent1 className="absolute -top-8 -left-8 w-36 h-36 text-rose/20" />
-      <FloralLeaf className="absolute bottom-12 right-8 w-12 h-20 text-primary/15 rotate-[45deg]" />
+      <GeometricAccent className="absolute top-8 right-12 w-24 h-24 text-foreground/20" />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
@@ -19,7 +18,6 @@ const AboutSection = () => {
             <div className="relative">
               <div className="w-full aspect-[3/4] rounded-2xl bg-gradient-to-br from-primary/80 via-rose/50 to-coral/40" />
               <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl bg-rose/60" />
-              <FloralAccent1 className="absolute -top-6 -right-6 w-20 h-20 text-rose/30" />
             </div>
           </div>
 
