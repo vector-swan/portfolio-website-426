@@ -140,6 +140,12 @@ const GenAITextFramework = () => {
             <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed">
               The preview popover was the most important call on this project. AI output is unpredictable. Users needed to feel in control before trusting it. Seeing the result first, before it lands in their document, is what made adoption possible. Without that step, one bad output would have killed confidence in the whole feature. As new use cases emerged, some flows opened content in a separate screen, making the popover redundant. Knowing when to skip it without breaking the core trust pattern was one of the harder design problems on this project.
             </p>
+            <div className="mt-10 rounded-xl p-6" style={{ background: "#F9EEF2" }}>
+              <p className="text-coral font-body font-medium text-xs tracking-widest uppercase mb-2">AI IN MY PROCESS</p>
+              <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                I built a personal knowledge base to track every decision, open question, and legal revision across this project. With multiple teams and multiple rounds of feedback, having a single place to capture context meant nothing got lost between meetings.
+              </p>
+            </div>
           </Section>
         </div>
       </section>

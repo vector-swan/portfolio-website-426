@@ -151,6 +151,12 @@ const PromptEngineeringStudio = () => {
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
               Understanding LLM evaluations was hard. Rather than wireframe something I did not fully grasp, an engineer built a working prototype in v0 so I could see how it functioned first. That changed how I work. For complex technical concepts, seeing the functionality first is faster than designing something I cannot fully understand yet.
             </p>
+            <div className="mt-10 rounded-xl p-6" style={{ background: "#F9EEF2" }}>
+              <p className="text-coral font-body font-medium text-xs tracking-widest uppercase mb-2">AI IN MY PROCESS</p>
+              <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                I used Claude throughout this project to pressure-test edge cases, stress-test the evaluation framework logic, and write clearer documentation for the engineering handoff. Designing a tool for AI practitioners while using AI to design it gave me a perspective I could not have gotten any other way.
+              </p>
+            </div>
           </Section>
         </div>
       </section>

@@ -171,6 +171,12 @@ const MultiSurfaceAgentDesign = () => {
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
               Five designers. Four product teams. Bi-weekly syncs. A tracking system to see where each surface stood against the established patterns. Without both the design and the coordination, nothing ships consistently.
             </p>
+            <div className="mt-10 rounded-xl p-6" style={{ background: "#F9EEF2" }}>
+              <p className="text-coral font-body font-medium text-xs tracking-widest uppercase mb-2">AI IN MY PROCESS</p>
+              <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                I used Claude to map surface constraints and identify where established patterns would break before bringing recommendations to the team. Running through the logic conversationally helped me catch gaps I would have missed working through a document alone.
+              </p>
+            </div>
           </Section>
         </div>
       </section>
