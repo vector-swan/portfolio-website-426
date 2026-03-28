@@ -26,7 +26,7 @@ const HeroSection = () => {
         <div className="max-w-4xl">
           <div className="animate-fade-up">
             <p className="text-coral font-body font-medium text-base md:text-lg tracking-widest uppercase mb-4">
-              Mia · Senior Product Designer
+              Mia Donnell · Senior Product Designer
             </p>
           </div>
 

@@ -11,7 +11,7 @@ const Index = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-16">
           <a href="#" className="font-display font-bold text-xl text-foreground">
-            Mia<span className="text-coral">.</span>
+            Mia Donnell<span className="text-coral">.</span>
           </a>
           <div className="hidden sm:flex gap-8">
             <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
