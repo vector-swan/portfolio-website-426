@@ -24,12 +24,12 @@ const ContactSection = () => {
 
           <div className="flex flex-row gap-6 items-center">
             <a
-              href="mailto:hello@mia.design"
+              href="mailto:miaddonnell@gmail.com"
               className="bg-coral text-coral-foreground font-medium px-5 py-2 rounded-full text-sm hover:scale-105 transition-transform duration-200"
             >
               Say Hello
             </a>
-            <a href="#" className="opacity-60 hover:opacity-100 transition-opacity text-sm font-medium">
+            <a href="https://www.linkedin.com/in/miadonnell/" target="_blank" rel="noopener noreferrer" className="opacity-60 hover:opacity-100 transition-opacity text-sm font-medium">
               LinkedIn
             </a>
             <a href="#" className="opacity-60 hover:opacity-100 transition-opacity text-sm font-medium">
