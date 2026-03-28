@@ -1,12 +1,12 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { GeometricAccent } from "@/components/GeometricAccents";
+
 
 const AboutSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden" ref={ref}>
-      <GeometricAccent className="absolute top-8 right-12 w-24 h-24 text-foreground/20" />
+      
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">

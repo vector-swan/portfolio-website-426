@@ -1,4 +1,4 @@
-import { GridDotPattern } from "@/components/GeometricAccents";
+
 
 const HeroSection = () => {
   const scrollToWork = () => {
@@ -7,9 +7,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Grid dot pattern — top right */}
-      <GridDotPattern className="absolute top-16 right-8 w-48 h-48 text-foreground/15 md:w-64 md:h-64" />
-
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="max-w-4xl">
           <div className="animate-fade-up">
