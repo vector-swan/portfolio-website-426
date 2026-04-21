@@ -16,7 +16,7 @@ const ComingSoon = () => {
           </p>
 
           <h1 className="font-display font-700 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.08] tracking-tight text-foreground mb-8">
-            Portfolio launching{" "}
+            Portfolio launching{"\u00A0"}
             <em className="text-primary italic">soon</em>.
           </h1>
 
