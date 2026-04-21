@@ -3,9 +3,19 @@ import { Link } from "react-router-dom";
 
 const caseStudies = [
   {
+    title: "GenAI Text Framework",
+    description:
+      "Workday's first generative AI product. A horizontal foundation for text generation across 750+ enterprise customers, built to feel native on every surface it touched.",
+    tags: ["Foundational Framework", "Generative AI", "Enterprise Scale"],
+    accentGradient: "from-coral/60 to-coral/20",
+    accentTag: "bg-coral/15 text-coral",
+    accentLink: "text-coral",
+    href: "/genai-text-framework",
+  },
+  {
     title: "Prompt Engineering Studio",
     description:
-      "An internal tool empowering non-technical teams to craft, test, and refine prompts — cutting iteration time by 60%.",
+      "The developer tool that let Workday's non-technical teams build and test AI features without writing code. 450 internal users, 34% weekly stickiness.",
     tags: ["Developer Tools", "Prompt Design", "Internal Product"],
     accentGradient: "from-rose/60 to-rose/20",
     accentTag: "bg-rose/15 text-rose",
@@ -15,22 +25,12 @@ const caseStudies = [
   {
     title: "Multi-Surface Agent Design",
     description:
-      "An end-to-end experience for an AI agent across mobile, desktop, and ambient — seamless handoffs, consistent context, one beautiful thread.",
+      "Coordinating five product teams to ship Workday's first AI agent consistently across web, mobile, Slack, Teams, and Sana.",
     tags: ["AI Agent UX", "Multi-Surface", "Systems Design"],
     accentGradient: "from-primary/60 to-primary/20",
     accentTag: "bg-primary/15 text-primary",
     accentLink: "text-primary",
     href: "/multi-surface-agent-design",
-  },
-  {
-    title: "GenAI Text Framework",
-    description:
-      "A design framework for generative text — tone calibration, transparent attribution, and graceful user control across four product surfaces.",
-    tags: ["Generative AI", "Content Design", "Framework"],
-    accentGradient: "from-coral/60 to-coral/20",
-    accentTag: "bg-coral/15 text-coral",
-    accentLink: "text-coral",
-    href: "/genai-text-framework",
   },
 ];
 
@@ -49,7 +49,7 @@ const CaseStudiesSection = () => {
             Selected <em className="italic">Work</em>
           </h2>
           <p className="text-muted-foreground text-lg max-w-lg">
-            Stories from the intersection of design, AI, and real human connection.
+            Three stories from building Workday's first AI products.
           </p>
         </div>
 

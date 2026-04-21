@@ -1,6 +1,8 @@
+import BrandMonogram from "@/components/BrandMonogram";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
+import TalkSection from "@/components/TalkSection";
 import HowIWorkSection from "@/components/HowIWorkSection";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
@@ -11,8 +13,11 @@ const Index = () => {
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-16">
-          <a href="#" className="font-display font-bold text-xl text-foreground">
-            Mia Donnell<span className="text-coral">.</span>
+          <a href="#" className="flex items-center gap-2 text-foreground group">
+            <BrandMonogram className="h-10 w-auto shrink-0 transition-opacity group-hover:opacity-90" aria-hidden />
+            <span className="font-display font-bold text-xl leading-none">
+              Mia Donnell<span className="text-coral">.</span>
+            </span>
           </a>
           <div className="hidden sm:flex gap-8">
             <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -20,6 +25,9 @@ const Index = () => {
             </a>
             <a href="#case-studies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Work
+            </a>
+            <a href="#talk" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Talk
             </a>
             <a href="#skills" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Expertise
@@ -33,6 +41,7 @@ const Index = () => {
 
       <HeroSection />
       <CaseStudiesSection />
+      <TalkSection />
       <AboutSection />
       <HowIWorkSection />
       <SkillsSection />

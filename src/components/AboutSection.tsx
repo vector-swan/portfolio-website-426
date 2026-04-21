@@ -28,14 +28,13 @@ const AboutSection = () => {
               <em className="italic">A little</em> about me
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
-              I'm a product designer who's spent the last three years deep in the world of{" "}
-              <span className="text-foreground font-medium">AI agent design</span> — shaping how autonomous systems
-              can feel transparent, human, and genuinely delightful.
+              I'm a Senior Product Designer with{" "}
+              <span className="text-foreground font-medium">ten years shipping enterprise software at scale</span>.
+              Since 2023, I've led Workday's AI-first design work. The GenAI Text Framework, the Prompt Engineering Studio, and cross-platform agent experiences across five surfaces.
             </p>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              From multi-surface agent experiences to generative text frameworks, I live in the space where{" "}
-              <span className="text-coral font-medium">human intuition meets machine intelligence</span>. Currently
-              designing at the frontier of responsible AI.
+              I work in the space where{" "}
+              <span className="text-coral font-medium">deeply technical systems meet everyday humans</span>. My obsession is foundational design. The invisible infrastructure that makes new technology usable, scalable, and trustworthy at enterprise scale.
             </p>
           </div>
         </div>

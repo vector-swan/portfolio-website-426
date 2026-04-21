@@ -43,9 +43,6 @@ const ContactSection = () => {
             <a href="https://www.linkedin.com/in/miadonnell/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors text-sm font-medium">
               LinkedIn
             </a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors text-sm font-medium">
-              Read.cv
-            </a>
           </div>
         </div>
       </div>

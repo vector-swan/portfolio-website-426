@@ -1,16 +1,17 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const skills = [
+  "Enterprise Product Design",
+  "Foundational Systems",
   "AI Agent UX",
-  "Conversational Design",
-  "Multi-Surface Design",
+  "Developer Experience",
   "Design Systems",
+  "Generative AI",
+  "Multi-Surface Design",
+  "Workflow Mapping",
   "Responsible AI",
-  "Generative UI",
-  "Prompt Design",
-  "User Research",
-  "Prototyping",
   "Systems Thinking",
+  "Prompt Design",
 ];
 
 const SkillsSection = () => {
@@ -29,7 +30,7 @@ const SkillsSection = () => {
               What I <em className="italic">love</em>
             </h2>
             <p className="text-muted-foreground text-lg">
-              The things I think about every day — and have shipped real products around.
+              The things I think about every day, and have shipped real products around.
             </p>
           </div>
 
