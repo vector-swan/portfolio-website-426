@@ -1,7 +1,21 @@
-import ComingSoon from "@/components/ComingSoon";
+import { Routes, Route } from "react-router-dom";
+import PasswordGate from "@/components/PasswordGate";
+import Index from "@/pages/Index";
+import GenAITextFramework from "@/pages/GenAITextFramework";
+import PromptEngineeringStudio from "@/pages/PromptEngineeringStudio";
+import MultiSurfaceAgentDesign from "@/pages/MultiSurfaceAgentDesign";
+import NotFound from "@/pages/NotFound";
 
 const App = () => (
-  <ComingSoon />
+  <PasswordGate>
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/genai-text-framework" element={<GenAITextFramework />} />
+      <Route path="/prompt-engineering-studio" element={<PromptEngineeringStudio />} />
+      <Route path="/multi-surface-agent-design" element={<MultiSurfaceAgentDesign />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </PasswordGate>
 );
 
 export default App;
