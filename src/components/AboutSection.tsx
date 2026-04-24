@@ -5,7 +5,7 @@ const AboutSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="about" className="py-24 md:py-32 relative overflow-hidden" ref={ref}>
+    <section id="about" className="py-24 md:py-32 relative overflow-hidden" style={{ background: "#F9EEF2" }} ref={ref}>
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
           <div

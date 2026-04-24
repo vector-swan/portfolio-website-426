@@ -11,7 +11,7 @@ const HowIWorkSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section className="py-24 md:py-32" style={{ background: "#F9EEF2", backgroundImage: "none" }} ref={ref}>
+    <section className="py-24 md:py-32 bg-background" ref={ref}>
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div
           className={`mb-14 transition-all duration-700 ${
