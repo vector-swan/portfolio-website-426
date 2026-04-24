@@ -128,7 +128,7 @@ const GenAITextFramework = () => {
                 muted
                 loop
                 playsInline
-                poster="/images/genai-hero-poster.png"
+                poster="/images/text-framework/genai-hero-poster.png"
                 className="w-full h-auto block"
                 aria-label="Generating a job description with the Workday Gen AI Text Framework: resting FAAB, menu of contextual actions, popover loading, and generated result."
               >
