@@ -52,7 +52,7 @@ const caseStudies: CaseStudy[] = [
     },
     imageClass: "",
     accentLink: "text-coral",
-    href: "/multi-surface-agent-design",
+    href: null,
   },
 ];
 
