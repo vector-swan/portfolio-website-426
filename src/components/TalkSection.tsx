@@ -4,7 +4,7 @@ const TalkSection = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="talk" className="py-24 md:py-32 relative overflow-hidden" ref={ref}>
+    <section id="talk" className="py-24 md:py-32 relative overflow-hidden" style={{ background: "#F9EEF2" }} ref={ref}>
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div
           className={`mb-12 transition-all duration-700 ${
@@ -44,7 +44,7 @@ const TalkSection = () => {
             </a>
           </div>
 
-          <div className="bg-gradient-to-br from-coral/60 to-coral/20 rounded-2xl p-8 flex flex-col justify-center items-start">
+          <div className="rounded-2xl p-8 flex flex-col justify-center items-start" style={{ background: "#F9EEF2" }}>
             <p className="text-coral font-body font-medium text-xs tracking-widest uppercase mb-4">
               TIME SAVED
             </p>

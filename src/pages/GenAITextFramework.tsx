@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
+
+// ─── Shared layout components ────────────────────────────────────────────────
 
 const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -13,8 +16,8 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
   );
 };
 
-const PinkLabel = ({ children }: { children: React.ReactNode }) => (
-  <p className="text-coral font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
+const PinkLabel = ({ children, light }: { children: React.ReactNode; light?: boolean }) => (
+  <p className={`font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3 ${light ? "text-[hsl(210,80%,78%)]" : "text-coral"}`}>
     {children}
   </p>
 );
@@ -30,15 +33,67 @@ const BlueBg = ({ children, className = "" }: { children: React.ReactNode; class
   </section>
 );
 
+// ─── Unified clickable image ──────────────────────────────────────────────────
+// Wrap any <img> to make it open the shared lightbox.
+// Pass onOpen down from the page component so there's one lightbox for everything.
+
+type OpenLightbox = (src: string, alt: string, caption?: string) => void;
+
+const ClickImg = ({
+  src,
+  alt,
+  caption,
+  imgClassName = "",
+  fill = false,
+  onOpen,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  imgClassName?: string;
+  fill?: boolean;
+  onOpen: OpenLightbox;
+}) => (
+  <button
+    type="button"
+    onClick={() => onOpen(src, alt, caption)}
+    className={`block w-full cursor-zoom-in group overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 ${fill ? "h-full" : ""}`}
+    aria-label={`View full size: ${alt}`}
+  >
+    <img
+      src={src}
+      alt={alt}
+      className={`block w-full transition-transform duration-300 ease-out group-hover:scale-[1.03] ${fill ? "h-full object-cover" : "h-auto"} ${imgClassName}`}
+    />
+  </button>
+);
+
+// ─── Stats ────────────────────────────────────────────────────────────────────
+
 const stats = [
-  { number: "52,400", label: "AI interactions per week on the highest-usage feature alone" },
-  { number: "587", label: "enterprise tenants on Feedback Suggestions" },
-  { number: "17", label: "active use cases — 7 GA, 2 EA, 8 in development" },
+  { number: "52,400", label: "Gen AI interactions per week on the highest-usage feature alone" },
+  { number: "580+", label: "customer tenants implemented Gen AI" },
+  { number: "17", label: "active use cases" },
+  { number: "70%+", label: "delivery speed improvement from bespoke engineering" },
 ];
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 const GenAITextFramework = () => {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string; caption?: string } | null>(null);
+
+  const openLightbox: OpenLightbox = (src, alt, caption) => setLightbox({ src, alt, caption });
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const handleKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [lightbox]);
+
   return (
     <div className="min-h-screen">
+
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-16">
@@ -56,17 +111,30 @@ const GenAITextFramework = () => {
 
       {/* 1. Hero */}
       <BlueBg>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-24 md:pt-44 md:pb-36">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-16 md:pt-44 md:pb-20">
           <Section>
-            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white mb-8">
-              Workday's first generative AI feature. Built to work anywhere.
+            <h1 className="text-white/50 font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
+              Generative AI Text Framework
             </h1>
-            <div className="flex flex-wrap gap-3">
-              {["Lead Designer · Founding & Sole", "2023–2025", "Workday's first shipped AI product"].map((chip) => (
-                <span key={chip} className="text-xs text-white/80 font-body border border-white/20 rounded-full px-4 py-1.5">
-                  {chip}
-                </span>
-              ))}
+            <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-white mb-6">
+              Workday's <em className="text-white italic">first</em> generative AI feature.
+            </h2>
+            <p className="font-body text-white/50 text-sm md:text-base mb-12">
+              Lead Designer&nbsp;&nbsp;|&nbsp;&nbsp;2023–2025
+            </p>
+            <div className="rounded-xl overflow-hidden shadow-2xl max-w-4xl bg-white">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/images/genai-hero-poster.png"
+                className="w-full h-auto block"
+                aria-label="Generating a job description with the Workday Gen AI Text Framework: resting FAAB, menu of contextual actions, popover loading, and generated result."
+              >
+                <source src="/Videos/genai-hero.webm" type="video/webm" />
+                <source src="/Videos/genai-hero.mp4" type="video/mp4" />
+              </video>
             </div>
           </Section>
         </div>
@@ -78,24 +146,43 @@ const GenAITextFramework = () => {
           <Section>
             <PinkLabel>THE PROBLEM</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              There was no pattern for AI in Workday. We had to build one.
+              There was no pattern for AI in Workday.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-8">
-              By 2023, multiple Workday product teams were building AI-powered features independently. Job description generation, feedback suggestions, email drafting — each team was designing and engineering their AI UI from scratch.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-4">
+              Generative AI had just hit the scene in 2023 and multiple Workday products were already building features independently. Every team's AI button looked and behaved differently. Some lived above the field, some below. Some features used modals to display generation, others just dropped text inline. The biggest sticking point? What should our AI disclaimer be, and where should we show sources.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-              {[
-                { label: "No shared components", desc: "Every team's sparkle button looked different, behaved differently, was positioned differently." },
-                { label: "No shared interaction model", desc: "Some features used modals, some inline replacement, some triggered on click, some loaded automatically." },
-                { label: "No shared trust signals", desc: "AI disclaimers and feedback mechanisms were inconsistent or absent across the product." },
-                { label: "Redundant engineering effort", desc: "Every team built the same loading states, popovers, and error handling from scratch." },
-              ].map((item) => (
-                <div key={item.label} className="rounded-xl border border-border p-5">
-                  <p className="font-display font-semibold text-foreground text-sm mb-1">{item.label}</p>
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
+              We needed something that could build trust with users, unify the generative AI experience across Workday, and work with any product surface.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full">
+              <div className="rounded-xl overflow-hidden shadow-sm border border-border/20">
+                <ClickImg
+                  src="/images/text-framework/jd.png"
+                  alt="Workday job description screen in the Generative AI Text Framework"
+                  caption="Job description flow with AI-assisted text generation."
+                  onOpen={openLightbox}
+                />
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-sm border border-border/20">
+                <ClickImg
+                  src="/images/text-framework/email-template.png"
+                  alt="Workday email template screen showing AI assist for generating email content"
+                  caption="Email template workflow with AI-powered copy generation."
+                  onOpen={openLightbox}
+                />
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-sm border border-border/20">
+                <ClickImg
+                  src="/images/text-framework/sms.png"
+                  alt="Workday SMS messaging screen with Generate SMS with AI button"
+                  caption="SMS workflow with AI-generated message content."
+                  onOpen={openLightbox}
+                />
+              </div>
             </div>
+            <p className="font-body text-muted-foreground text-sm italic mt-4 text-left">
+              Three text-generation workflows: job description, email, and SMS experiences in the Workday GenAI framework.
+            </p>
           </Section>
         </div>
       </section>
@@ -105,147 +192,191 @@ const GenAITextFramework = () => {
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>TWO KINDS OF USERS</PinkLabel>
-            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-8">
               We designed for two audiences at once.
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
-              <div className="bg-white rounded-xl p-6">
-                <p className="text-coral font-display font-bold text-sm uppercase tracking-widest mb-2">Application Teams</p>
-                <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                  Product teams building AI features into their products. If the framework didn't work for them, it would never reach end users at all. Our first partner was the job requisition team.
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="bg-white rounded-xl p-4 flex flex-row items-center gap-5">
+                <img src="/images/text-framework/single-lego.png" alt="Single lego block illustration" className="w-28 h-28 object-contain flex-shrink-0" />
+                <div>
+                  <p className="text-coral font-display font-bold text-sm uppercase tracking-widest mb-2">Application Teams</p>
+                  <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                    Product teams building Gen AI features into their products. If the framework didn't work for them, it would never reach end users at all. The Job Requisition team was one of our first partners.
+                  </p>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-6">
-                <p className="text-coral font-display font-bold text-sm uppercase tracking-widest mb-2">End Users</p>
-                <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                  Workday customers and employees who encounter AI features in their workflows — HR managers writing job descriptions, recruiters reviewing feedback, managers drafting emails.
-                </p>
+              <div className="bg-white rounded-xl p-4 flex flex-row items-center gap-5">
+                <img src="/images/text-framework/multi-lego-blocks.png" alt="Multi lego blocks illustration" className="w-28 h-28 object-contain flex-shrink-0" />
+                <div>
+                  <p className="text-coral font-display font-bold text-sm uppercase tracking-widest mb-2">End Users</p>
+                  <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                    Managers drafting job descriptions and emails, recruiters reviewing candidate feedback, HR handling comms. The people who actually have to trust what AI hands them.
+                  </p>
+                </div>
               </div>
             </div>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mt-6">
-              This two-layer model shaped everything. The framework had to be easy enough for application teams to adopt, and trustworthy enough for end users to rely on.
-            </p>
+            <p className="font-body text-foreground text-base md:text-lg max-w-2xl leading-relaxed">The framework had to be easy enough for application teams to adopt, and trustworthy enough for end users to rely on.</p>
           </Section>
         </div>
       </section>
 
-      {/* 4. The Insight */}
+      {/* 3.5 The Insight */}
       <section className="bg-white" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>THE INSIGHT</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              It had to feel native, not bolted on.
+              The goal was for the Gen AI features to belong.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
-              Workday is built on forms and fields. For AI text generation to work here, it had to be invisible infrastructure — not a feature dropped into the middle of someone's workflow. The framework needed to feel like it belonged in whatever surface it lived in.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-8">
+              Workday is built on forms and fields. For AI text generation to work here, it had to feel native, not bolted on. The framework needed to fit whatever surface it lived in, across hundreds of products and every customization a customer might make. Tall order.
             </p>
+            <div className="rounded-xl overflow-hidden shadow-sm border border-border/20 max-w-3xl">
+              <ClickImg
+                src="/images/text-framework/workdayform.png"
+                alt="Create Digital Course form showing AI-assisted text generation in context"
+                onOpen={openLightbox}
+              />
+            </div>
           </Section>
         </div>
       </section>
 
-      {/* 5. FAAB Origin Story */}
+      {/* 4. FAAB */}
       <BlueBg>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel>THE FAAB WASN'T THE ORIGINAL IDEA</PinkLabel>
+            <p className="text-white/50 font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
+              IT'S GOT TO BE A FAAB
+            </p>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-6">
-              A constraint pushed us to a better solution.
+              A layout constraint pushed us somewhere better.
             </h2>
             <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-8">
-              Early concepts used standard buttons placed above or below the text field — the conventional approach. It worked, but broke down fast. Workday's XO framework is rigid: adding elements above or below a field disrupts the page layout, and not every surface had room.
+              Early concepts put the button above or below the text field. Workday's rigid XO framework made that feel disconnected, especially when someone was filling out a single form component. So we put the button inside the field itself.
             </p>
             <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-10">
-              That constraint pushed us to the Floating AI Action Button — an entry point that lives <em>within</em> the field itself. It could land on any surface, in any context, without requiring layout changes from the adopting teams.
+              The Floating AI Action Button lives 8px from the bottom-right corner of any text area. It lands on any surface without requiring layout changes from adopting teams. Common now. New then.
             </p>
-            <div className="rounded-xl overflow-hidden shadow-2xl max-w-2xl">
-              <img
-                src="/Images/FAAB%20component.png"
-                alt="FAAB component specification showing Primary Prompt Button and Prompt Action Button variants"
-                className="w-full h-auto"
+            <div className="rounded-xl overflow-hidden shadow-xl max-w-4xl">
+              <ClickImg
+                src="/images/text-framework/faab-placement.png"
+                alt="Primary Prompt Button and Prompt Action Button positioning: 8 pixels from the bottom right of a text area"
+                caption="The FAAB sits 8px from the bottom-right corner of any text field — no layout changes required from adopting teams."
+                onOpen={openLightbox}
               />
             </div>
           </Section>
         </div>
       </BlueBg>
 
-      {/* 6. What I Built */}
+      {/* 5. What I Built */}
       <section className="bg-white" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>WHAT I BUILT</PinkLabel>
-            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-4">
-              Three parts that became the foundation for every text generation feature at Workday.
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
+              Three parts became the foundation for every text generation feature at Workday.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-12">
-              The library was connected directly to Storybook and linked to technical documentation. These are production-ready components — when an engineer implements a new GenAI feature, they're building against this spec.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
+              The whole flow was built on Workday's Canvas design system and componentized in Figma for designers. I partnered with engineering to build a production-ready library wired into Storybook, with technical documentation, so product teams could implement without reinventing anything.
             </p>
 
-            {/* FAAB */}
-            <div className="mb-16">
+            {/* 01 FAAB */}
+            <div className="mb-14">
               <div className="flex items-start gap-4 mb-6">
                 <span className="text-coral font-display font-bold text-2xl leading-none">01</span>
                 <div>
                   <h3 className="font-display font-bold text-xl text-foreground mb-2">Floating AI Action Button (FAAB)</h3>
                   <p className="font-body text-muted-foreground text-base leading-relaxed max-w-2xl">
-                    A context-aware button that floats 8px from the bottom-right corner of any text area — a precise, system-wide rule. Two variants: a labeled Primary Prompt button (single AI action) and an icon-only Prompt Action button (multiple actions). Once text exists in the field, it switches variants automatically.
+                    A context-aware button anchored 8px from the bottom-right corner of any text field. Two variants: a labeled Primary Prompt button for single AI actions, and an icon-only Prompt Action button for multiple. Switches automatically once text exists in the field.
                   </p>
                 </div>
               </div>
-              <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                <img
-                  src="/Images/FAAB.png"
-                  alt="FAAB variants in context — Primary Prompt Button and Prompt Action Button"
-                  className="w-full h-auto"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="rounded-xl border border-border/20 p-8 flex flex-col items-center justify-center shadow-sm">
+                  <ClickImg
+                    src="/images/text-framework/expandedbutton.png"
+                    alt="Primary Prompt button states: Default, Focus, Hover, Active, Disabled"
+                    caption="Labeled variant: Primary Prompt. Used when the field is empty."
+                    imgClassName="max-w-xs"
+                    onOpen={openLightbox}
+                  />
+                  <p className="font-body text-muted-foreground text-sm mt-6 text-center">Labeled variant: Primary Prompt. Used when the field is empty.</p>
+                </div>
+                <div className="rounded-xl border border-border/20 p-8 flex flex-col items-center justify-center shadow-sm">
+                  <ClickImg
+                    src="/images/text-framework/collapsedbutton.png"
+                    alt="Prompt Action icon-only button states with tooltip"
+                    caption="Icon-only variant: Prompt Action. Used once text exists in the field."
+                    imgClassName="max-w-xs"
+                    onOpen={openLightbox}
+                  />
+                  <p className="font-body text-muted-foreground text-sm mt-6 text-center">Icon-only variant: Prompt Action. Used once text exists in the field.</p>
+                </div>
               </div>
             </div>
 
-            {/* Generation Menu */}
-            <div className="mb-16">
+            {/* 02 Generation Menu */}
+            <div className="mb-14">
               <div className="flex items-start gap-4 mb-6">
                 <span className="text-coral font-display font-bold text-2xl leading-none">02</span>
                 <div>
                   <h3 className="font-display font-bold text-xl text-foreground mb-2">Generation Menu</h3>
                   <p className="font-body text-muted-foreground text-base leading-relaxed max-w-2xl">
-                    Contextual options surfaced based on where the user is: generate, shorten, professionalize, refine. Context-aware: Proofread requires selected text, so it's disabled until something is highlighted. The menu knows what actions are possible right now.
+                    Contextual options surfaced based on where the user is: generate, shorten, professionalize, refine. Proofread requires selected text, so it's disabled until something is highlighted. The menu always knows what's possible right now.
                   </p>
                 </div>
               </div>
-              <div className="rounded-xl overflow-hidden border border-border shadow-sm max-w-sm">
-                <img
-                  src="/Images/Menu.png"
-                  alt="Generation menu with contextual AI action options"
-                  className="w-full h-auto"
+              <div className="rounded-xl border border-border/20 p-8 flex items-center justify-center shadow-sm">
+                <ClickImg
+                  src="/images/text-framework/promptmenu.png"
+                  alt="Generation menu annotated with Hero Prompt and Secondary Prompts"
+                  caption="The generation menu surfaces contextual actions based on field state. Proofread stays disabled until text is selected."
+                  imgClassName="max-w-lg"
+                  onOpen={openLightbox}
                 />
               </div>
             </div>
 
-            {/* AI Content Popover */}
+            {/* 03 AI Content Popover */}
             <div>
               <div className="flex items-start gap-4 mb-6">
                 <span className="text-coral font-display font-bold text-2xl leading-none">03</span>
                 <div>
                   <h3 className="font-display font-bold text-xl text-foreground mb-2">AI Content Popover</h3>
                   <p className="font-body text-muted-foreground text-base leading-relaxed max-w-2xl">
-                    The workspace where users review and decide on generated text before it enters their field. Draggable and resizable. Shows the AI disclaimer, data sources used, and three actions: Insert, Replace, Regenerate. Nothing lands in their document without their approval.
+                    The workspace where users review and decide on generated text before it enters their field. Draggable and resizable, it shows the AI disclaimer, data sources, and three actions: Insert, Replace, Regenerate. Nothing lands in their document without their approval.
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                  <img
-                    src="/Images/Popover%20Loading.png"
-                    alt="AI Content Popover in loading state, cycling through data sources"
-                    className="w-full h-auto"
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="rounded-xl border border-border/20 overflow-hidden shadow-sm">
+                  <ClickImg
+                    src="/images/text-framework/popover-loading.png"
+                    alt="AI Content Popover in loading state while text generation is in progress"
+                    caption="AI Content Popover loading — generation is in progress."
+                    onOpen={openLightbox}
                   />
+                  <p className="font-body text-muted-foreground text-xs py-3 text-center border-t border-border/20">Loading</p>
                 </div>
-                <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                  <img
-                    src="/Images/Popover%20Result.png"
-                    alt="AI Content Popover in results state with Insert, Replace, Regenerate actions"
-                    className="w-full h-auto"
+                <div className="rounded-xl border border-border/20 overflow-hidden shadow-sm">
+                  <ClickImg
+                    src="/images/text-framework/state-default.png"
+                    alt="AI Content Popover showing generated text with Insert, Replace, Regenerate"
+                    caption="Generated result ready to review."
+                    onOpen={openLightbox}
                   />
+                  <p className="font-body text-muted-foreground text-xs py-3 text-center border-t border-border/20">Generated result</p>
+                </div>
+                <div className="rounded-xl border border-border/20 overflow-hidden shadow-sm">
+                  <ClickImg
+                    src="/images/text-framework/state-sources-open.png"
+                    alt="AI Content Popover with Data Sources panel expanded, showing citation references"
+                    caption="Data Sources panel open, showing the citation references used by the AI."
+                    onOpen={openLightbox}
+                  />
+                  <p className="font-body text-muted-foreground text-xs py-3 text-center border-t border-border/20">Data sources expanded</p>
                 </div>
               </div>
             </div>
@@ -253,32 +384,43 @@ const GenAITextFramework = () => {
         </div>
       </section>
 
-      {/* 7. Key Decision: See It Before It Lands */}
+      {/* 6. Key Decision */}
       <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>KEY DECISION</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              See it before it lands.
+              Users needed to see the output before it touched their work.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              The preview popover was the most important call on this project. AI output is unpredictable. Users needed to feel in control before trusting it. Seeing the result first — before it lands in their document — is what made adoption possible. Without that step, one bad output would have killed confidence in the whole feature.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-4">
+              The preview popover was one of the most consequential decisions on this project. AI output is unpredictable. If something lands in your document without approval and it's wrong, you lose trust in the whole feature immediately. The popover gives users a chance to review, edit, or reject before anything touches their work.
             </p>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
-              The positioning behavior came from watching users. Early designs placed the popover in a fixed location. In testing, users kept moving it to see the original field and the generated text simultaneously. The insight: once you move it, you've told the product where you want it. So subsequent openings return to wherever the user last positioned it.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-8">
+              Workday is a serious environment. Users are aware they're submitting real data in real forms. Early designs fixed the popover in one location, but testing showed users kept trying to move it out of the way so they could see their source content and the AI output side by side. We made the popover resizable and draggable so they could put it wherever made sense.
             </p>
-            <div className="rounded-xl overflow-hidden border border-border shadow-sm max-w-3xl">
-              <img
-                src="/Images/Positioning-1.png"
-                alt="Popover positioning behavior — user-set position persists across sessions"
-                className="w-full h-auto"
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="rounded-xl overflow-hidden border border-border/20 shadow-sm">
+                <ClickImg
+                  src="/images/text-framework/popover-move/Move.png"
+                  alt="User dragging the AI Content Popover to reposition it on screen"
+                  caption="Users can drag the popover anywhere to keep their source content in view."
+                  onOpen={openLightbox}
+                />
+              </div>
+              <div className="rounded-xl overflow-hidden border border-border/20 shadow-sm">
+                <ClickImg
+                  src="/images/text-framework/popover-move/Result.png"
+                  alt="AI Content Popover repositioned by the user alongside source content"
+                  caption="The popover remembers its position on subsequent openings."
+                  onOpen={openLightbox}
+                />
+              </div>
             </div>
           </Section>
         </div>
       </section>
 
-      {/* 8. In Production: Job Description Flow */}
+      {/* 7. In Production */}
       <section className="bg-white" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
@@ -287,255 +429,245 @@ const GenAITextFramework = () => {
               The same pattern plays out across 17 use cases.
             </h2>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
-              The Generate Job Description flow in Workday's Create Job Requisition task shows every component behavior end-to-end. Different products, different engineering stacks — same interaction model, because they're all building on the same component spec.
+              The Generate Job Description flow inside Workday's Create Job Requisition task shows every component behavior end-to-end. Every state is deliberate. In State 3, Proofread is greyed out because nothing is selected, the menu knows what's possible right now. In State 2, the FAAB switches from labeled to icon-only because the available actions have changed.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                <div className="bg-muted/30 px-4 py-2 border-b border-border">
-                  <p className="font-body text-xs text-muted-foreground font-medium">State 1 — Required fields unmet</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { src: "/images/text-framework/job-description/empty-required-fields-not-met.png", num: "1", label: "Required fields unmet", alt: "Empty state: all fields blank, labeled Prompt button visible", caption: "All fields blank. Labeled Prompt button visible. Required fields message shown." },
+                { src: "/images/text-framework/job-description/generate-job-description.png", num: "2", label: "Ready to generate", alt: "Required fields met, FAAB visible and ready", caption: "Required fields met. FAAB ready to trigger generation." },
+                { src: "/images/text-framework/job-description/generating.png", num: "3", label: "Generating", alt: "AI Content Popover in loading state while generating text", caption: "Popover open in loading state. AI is generating." },
+                { src: "/images/text-framework/job-description/popover-results.png", num: "4", label: "Results ready", alt: "AI Content Popover showing generated text with Insert, Replace, Regenerate actions", caption: "Generated text ready to review. Insert, Replace, or Regenerate." },
+                { src: "/images/text-framework/job-description/text-inserted.png", num: "5", label: "Text inserted", alt: "Generated text inserted into the job description field", caption: "Text inserted. FAAB returns to resting icon-only state." },
+                { src: "/images/text-framework/job-description/menu-open.png", num: "6", label: "Contextual menu open", alt: "Contextual generation menu open with FAAB in icon-only state", caption: "Contextual menu open. Options adapt to what's possible in the current state." },
+              ].map((item) => (
+                <div key={item.src} className="rounded-xl overflow-hidden border border-border/20 shadow-sm">
+                  <div className="bg-muted/30 px-4 py-2 border-b border-border/20">
+                    <p className="font-body text-xs text-foreground font-bold">{item.num} {item.label}</p>
+                  </div>
+                  <ClickImg src={item.src} alt={item.alt} caption={item.caption} onOpen={openLightbox} />
                 </div>
-                <img
-                  src="/Images/Job%20Description/Empty%20-%20Required%20Fields%20Not%20Met.png"
-                  alt="Job description flow: empty state with required fields message"
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                <div className="bg-muted/30 px-4 py-2 border-b border-border">
-                  <p className="font-body text-xs text-muted-foreground font-medium">State 2 — Popover results</p>
-                </div>
-                <img
-                  src="/Images/Job%20Description/Popover%20Results.png"
-                  alt="Job description flow: AI Content Popover with generated text ready to review"
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                <div className="bg-muted/30 px-4 py-2 border-b border-border">
-                  <p className="font-body text-xs text-muted-foreground font-medium">State 3 — Menu open, text in field</p>
-                </div>
-                <img
-                  src="/Images/Job%20Description/Menu%20Open.png"
-                  alt="Job description flow: menu open with FAAB switched to icon-only Prompt Action Button"
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                <div className="bg-muted/30 px-4 py-2 border-b border-border">
-                  <p className="font-body text-xs text-muted-foreground font-medium">State 4 — Text inserted</p>
-                </div>
-                <img
-                  src="/Images/Job%20Description/Text%20Inserted.png"
-                  alt="Job description flow: generated text inserted into the field"
-                  className="w-full h-auto"
-                />
-              </div>
+              ))}
             </div>
-            <p className="font-body text-muted-foreground text-sm max-w-2xl leading-relaxed mt-6">
-              In State 3, Proofread is disabled until text is selected — the menu knows what actions are possible. In State 2, the FAAB switches from labeled "Primary Prompt" to icon-only because the available actions have changed. Every state is deliberate.
-            </p>
           </Section>
         </div>
       </section>
 
-      {/* 9. Responsible AI */}
+      {/* 8. Responsible AI */}
       <BlueBg>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel>RESPONSIBLE AI</PinkLabel>
+            <PinkLabel light>RESPONSIBLE AI</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-6">
-              Getting the disclosure language right mattered.
+              The disclaimer took longer to write than any component.
             </h2>
-            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              This was new territory for the company legally. I worked directly with Workday's legal team to get AI disclosure language approved. The copy went through multiple rounds of revision — the tension was between legal's need for explicit disclaimers and users' need for language that didn't feel alarming or interrupt their workflow.
-            </p>
             <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed">
-              Getting that balance right was required before anything could ship. The result — "This content was generated by AI. Review content before use." — looks simple. It took significant negotiation to land there.
+              Legal, designers, and PMs, many rounds of revision, one line that had to fit anywhere in the product: "This content was generated by AI. Review content before use." Looks simple. Was not simple.
             </p>
           </Section>
         </div>
       </BlueBg>
 
-      {/* 10. Summarization */}
+      {/* 9. Summarization */}
       <section className="bg-white" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel>THE SYSTEM GROWS: SUMMARIZATION</PinkLabel>
+            <PinkLabel>THE SYSTEM GROWS</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              Naming the category is half the work.
+              By 2025, summarization needed its own model entirely.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              By 2025, summarization had emerged as a major use case — recruiting needed interview feedback summaries, Learning needed content feedback summaries, Student needed registration troubleshooting summaries. But the Framework wasn't built for them.
-            </p>
-            <div className="rounded-xl border border-border p-6 max-w-2xl mb-8">
-              <p className="font-display font-semibold text-foreground mb-2">Summarization is not generation.</p>
-              <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                Generation happens <em>inside</em> a text field — user-initiated, AI populates a field they own. Summarization happens <em>alongside</em> existing data — AI reads structured records already on the page and surfaces a synthesis. The user didn't click a button in a text field. The output doesn't go into anything they're editing. The existing FAAB + popover pattern was designed for the wrong model entirely.
-              </p>
-            </div>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-4">
-              I framed this as a platform problem and wrote a design brief scoping a Summarization component system — defining three display modes (inline, card, popover), two trigger types (auto-load vs. button-click), and a citation pattern as a platform-level standard.
-            </p>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
-              The design principle in both use cases: <strong>the summary is additive, not replacement.</strong> Source data stays visible. AI reduces time-to-insight without asking users to trust it blindly.
+              Recruiting, Learning, and Student were all independently solving summarization, and the FAAB pattern didn't fit. Generation happens inside a text field the user owns. Summarization happens alongside data the user is reading. Different model entirely. I wrote the brief: three display modes, two trigger types, citations as a platform standard. Source data always stays visible.
             </p>
-            <div className="rounded-xl overflow-hidden border border-border shadow-sm max-w-3xl">
-              <img
-                src="/Images/Interview%20Feedback%20Summary/Feedback%20Summary%20Expanded.png"
-                alt="Interview Feedback Summary — AI synthesis at top, full feedback matrix accessible below"
-                className="w-full h-auto"
+            <div className="rounded-xl overflow-hidden border border-border/20 shadow-sm max-w-3xl">
+              <ClickImg
+                src="/images/text-framework/summary.png"
+                alt="Summarization model overview showing three display modes and two trigger types"
+                caption="The summarization brief: three display modes, two trigger types, citations as a platform standard."
+                onOpen={openLightbox}
               />
             </div>
             <p className="font-body text-muted-foreground text-sm max-w-2xl leading-relaxed mt-3">
-              Interview Feedback Summary (Recruiting): AI consolidates multiple interviewer voices into one readable synthesis. The full structured data stays accessible below for anyone who wants to go deeper. Shipped in 25R2.
+              Interview Feedback Summary (Recruiting): AI consolidates multiple interviewer voices into one readable synthesis. Full structured data stays accessible below. Shipped in 25R2.
             </p>
           </Section>
         </div>
       </section>
 
-      {/* 11. RISING Guidelines */}
+      {/* 10. Cross-Org Impact */}
       <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel>CROSS-ORG IMPACT: RISING GUIDELINES</PinkLabel>
+            <PinkLabel>CROSS-ORG IMPACT</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              No one asked me to solve this. I solved it anyway.
+              Nobody had a mandate to fix this. I did it anyway.
             </h2>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              In my final weeks, designers across multiple product teams were independently designing AI cards for demos at RISING — Workday's major public user conference — with no shared standard. The inconsistency between products' AI presentations would undermine the company's AI story at its most visible moment.
+              Designers across multiple teams were independently designing AI cards for RISING, Workday's biggest customer conference. Inconsistency between products would have undermined the company's AI story at its most visible moment.
             </p>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              I authored AI Card Guidelines for RISING: required elements, three loading state variants, and eight layout variations mapped to real display contexts. The design principle I led with:
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-8">
+              I wrote AI Card Guidelines for RISING: required elements, three loading state variants, and eight layout variations mapped to real display contexts. The principle I led with:
             </p>
-            <blockquote className="border-l-4 border-coral pl-6 mb-10">
+            <blockquote className="border-l-4 border-coral pl-6 mb-8">
               <p className="font-display italic text-foreground text-xl md:text-2xl leading-snug">
                 "The cards you design don't have to be twins, but they need to be siblings."
               </p>
             </blockquote>
-            <div className="rounded-xl overflow-hidden border border-border shadow-sm max-w-4xl mb-4">
-              <img
-                src="/Images/AI%20Card%20Guidelines/Card%20Variations.png"
-                alt="AI Card Guidelines showing 8 layout variations for RISING — all siblings, not twins"
-                className="w-full h-auto"
-              />
-            </div>
-            <p className="font-body text-muted-foreground text-sm max-w-2xl leading-relaxed">
-              Eight layout variations — Multiple Actions, Single Action, No Actions, Horizontal, Table, Multi-Card, Sources Collapsed, Sources Expanded — each mapped to real display contexts product teams were designing for.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
+              Eight layout variations (Multiple Actions, Single Action, No Actions, Horizontal, Table, Multi-Card, Sources Collapsed, Sources Expanded), each mapped to a real context product teams were designing for. Designers used my Figma components to build prototypes and demos across Search, Recruiting, mobile, and desktop.
             </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="rounded-xl overflow-hidden border border-border/20 shadow-sm h-64">
+                <ClickImg
+                  src="/images/text-framework/card-variation/Original.png"
+                  alt="AI card guidelines for RISING showing Multiple Actions, Single Action, and No Actions layout variations"
+                  caption="Card layout variations for RISING — eight layouts mapped to real product display contexts."
+                  fill
+                  onOpen={openLightbox}
+                />
+              </div>
+              <div className="rounded-xl overflow-hidden border border-border/20 shadow-sm h-64">
+                <ClickImg
+                  src="/images/text-framework/card-variation/frame-1.png"
+                  alt="AI card layout variations for horizontal, table, and multi-card display contexts"
+                  caption="Horizontal, table, and multi-card layout variants used across Search and Recruiting."
+                  fill
+                  onOpen={openLightbox}
+                />
+              </div>
+              <div className="rounded-xl overflow-hidden border border-border/20 shadow-sm h-64">
+                <ClickImg
+                  src="/images/text-framework/card-variation/frame-2.png"
+                  alt="AI card layout variations showing Sources Collapsed and Sources Expanded states across mobile and desktop"
+                  caption="Sources Collapsed and Sources Expanded variants across mobile and desktop surfaces."
+                  fill
+                  onOpen={openLightbox}
+                />
+              </div>
+            </div>
           </Section>
         </div>
       </section>
 
-      {/* 12. Impact */}
+      {/* 11. Impact & Outcome */}
       <BlueBg>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel>IMPACT</PinkLabel>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <PinkLabel light>IMPACT & OUTCOME</PinkLabel>
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-6">
+              Product teams now build against this framework.
+            </h2>
+            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-12">
+              When an engineer implements a new Gen AI feature at Workday, they build against this spec. The component library made consistency easy for both designers and engineers.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
               {stats.map((s) => (
-                <div key={s.number} className="text-center">
-                  <p className="text-white font-display font-bold text-4xl md:text-5xl mb-3">{s.number}</p>
+                <div key={s.number} className="rounded-xl px-5 py-6 text-center" style={{ background: "hsla(210, 70%, 65%, 0.18)" }}>
+                  <p className="text-white font-display font-bold text-3xl md:text-5xl mb-3">{s.number}</p>
                   <p className="font-body text-white/70 text-sm leading-relaxed">{s.label}</p>
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { tenant: "587 tenants", feature: "Give Feedback / Suggest Response" },
-                { tenant: "233 tenants", feature: "Ad Hoc Worker Communications" },
-                { tenant: "209 tenants", feature: "Talent Highlights" },
-                { tenant: "70%+", feature: "delivery speed improvement target (Q3 FY26)" },
-              ].map((item) => (
-                <div key={item.feature} className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.1)" }}>
-                  <p className="font-display font-bold text-white text-lg mb-1">{item.tenant}</p>
-                  <p className="font-body text-white/60 text-xs leading-relaxed">{item.feature}</p>
-                </div>
-              ))}
-            </div>
+            <p className="font-body text-white/40 text-xs">Data as of July 2025</p>
           </Section>
         </div>
       </BlueBg>
 
-      {/* 13. Outcome */}
-      <section className="bg-white" style={{ backgroundImage: "none" }}>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
-          <Section>
-            <PinkLabel>OUTCOME</PinkLabel>
-            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              The framework became the backend every product team builds against.
-            </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-4">
-              When an engineer implements a new GenAI feature on the Accelerate Platform, they're building against this spec — connected to Storybook and technical documentation, not just design mockups. The component library made consistency something engineers implement rather than designers enforce.
-            </p>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
-              When the project transitioned to a new team, it was because the framework was mature enough to hand off — while the team that built it moved to Workday's highest-priority agentic work. That's a success story, not a deprioritization.
-            </p>
-          </Section>
-        </div>
-      </section>
-
-      {/* 14. What I Learned */}
+      {/* 12. What I Learned */}
       <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>WHAT I LEARNED</PinkLabel>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
-              {[
-                {
-                  title: "Platform design is invisible design",
-                  body: "When a component library works, users don't notice it — they just experience consistency. The goal was to make the right interaction model the path of least resistance for every product team."
-                },
-                {
-                  title: "Naming the category is half the work",
-                  body: "Recognizing that summarization was a categorically different problem from generation — not just a different feature but a different interaction model — was the insight that made the design brief useful."
-                },
-                {
-                  title: "Cross-functional influence doesn't require authority",
-                  body: "The RISING guidelines weren't my job. No one asked. I did it because I saw the problem and had the context to solve it. Useful work spreads."
-                },
-                {
-                  title: "The spec and the product are not the same thing",
-                  body: "The distance between Figma and shipped components is where consistency breaks down. Connecting spec to Storybook reduced that distance and made compliance structural."
-                },
-              ].map((item) => (
-                <div key={item.title} className="bg-white rounded-xl p-6">
-                  <p className="font-display font-semibold text-foreground text-sm mb-2">{item.title}</p>
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">{item.body}</p>
-                </div>
-              ))}
-            </div>
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground mb-4 max-w-2xl">
+              Seeing a gap and knowing I could help fill it made a real difference for the design org.
+            </h2>
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
+              For both the AI disclaimer and the designer guidelines, I had the most context and was furthest along in my thinking. I couldn't do it alone, so I pulled together designers doing AI work across teams and we built the guidelines together. The result was a consistent story at our biggest customer conference.
+            </p>
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-foreground mb-4 max-w-2xl">
+              When you're building with a new technology, designers across a large org crave direction.
+            </h2>
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
+              A lot of people were worried about getting AI interactions wrong. I was too. My approach was to keep learning, keep experimenting, and keep listening to product teams and users. That's what let me press forward when things were still ambiguous.
+            </p>
           </Section>
         </div>
       </section>
 
-      {/* 15. Closing Quote */}
+      {/* 13. What I'd Do Differently */}
       <BlueBg>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <p className="font-display italic text-white text-2xl md:text-3xl lg:text-4xl text-center leading-snug max-w-3xl mx-auto">
-              "AI design is not about the UI. It is about what happens when the output is wrong, unexpected, or just not quite right. Every trust pattern in this framework exists because of that question."
+            <PinkLabel light>WHAT I'D DO DIFFERENTLY</PinkLabel>
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-white mb-4 max-w-2xl">
+              The landscape has changed since 2023.
+            </h2>
+            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-10">
+              Chat and agents have become a primary way people interact with AI, and today I'd explore what it looks like when a chat interface and text fields work together.
+            </p>
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-white mb-4 max-w-2xl">
+              We only owned one part of the experience.
+            </h2>
+            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-10">
+              I would have liked to zoom out to the full workflow, what it actually means to write a job description with AI, not just populate a single field. Our "one size fits all" solution meant real tradeoffs. If every text field on a page had the FAAB, it could look overwhelming. We advised against it, but we didn't own that decision.
+            </p>
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-white mb-4 max-w-2xl">
+              I'd explore single-click form completion.
+            </h2>
+            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed">
+              Maybe a redesigned popover that handles multiple fields at once, or a chat interface that walks you through the whole thing.
             </p>
           </Section>
         </div>
       </BlueBg>
 
-      {/* 16. Footer Nav */}
+      {/* Footer Nav */}
       <section className="bg-white border-t border-border" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between">
-          <Link
-            to="/#case-studies"
-            className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link to="/#case-studies" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
             &larr; Back to Work
           </Link>
-          <Link
-            to="/prompt-engineering-studio"
-            className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
+          <Link to="/prompt-engineering-studio" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
             Next: Prompt Engineering Studio &rarr;
           </Link>
         </div>
       </section>
+
+      {/* ─── Unified Lightbox ─────────────────────────────────────────────────── */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-16 cursor-default animate-in fade-in duration-200"
+          onClick={() => setLightbox(null)}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 backdrop-blur-sm" style={{ background: "hsla(220, 40%, 12%, 0.72)" }} />
+
+          {/* Image container — shrinks to fit the image so ring hugs the content */}
+          <div
+            className="relative animate-in zoom-in-95 duration-200 cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="block max-w-[90vw] max-h-[85vh] w-auto h-auto rounded-2xl shadow-2xl ring-1 ring-white/10"
+            />
+            {lightbox.caption && (
+              <p className="text-white/50 text-sm mt-4 text-center font-body">{lightbox.caption}</p>
+            )}
+          </div>
+
+          {/* Close button */}
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            className="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all duration-150 cursor-pointer"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import { useState, useEffect, FormEvent } from "react";
-import BrandMonogram from "@/components/BrandMonogram";
 import MouseFollowMesh from "@/components/MouseFollowMesh";
 
 // Change this when you need a new password.
@@ -39,7 +38,6 @@ const PasswordGate = ({ children }: { children: React.ReactNode }) => {
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         <div className="max-w-md">
-          <BrandMonogram className="h-14 w-auto mb-2 block sm:h-16" title="Mia Donnell" />
           <p className="text-coral font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-4">
             Mia Donnell &middot; Senior Product Designer
           </p>

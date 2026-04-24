@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import PasswordGate from "@/components/PasswordGate";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "@/pages/Index";
 import GenAITextFramework from "@/pages/GenAITextFramework";
 import PromptEngineeringStudio from "@/pages/PromptEngineeringStudio";
@@ -8,6 +9,7 @@ import NotFound from "@/pages/NotFound";
 
 const App = () => (
   <PasswordGate>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/genai-text-framework" element={<GenAITextFramework />} />

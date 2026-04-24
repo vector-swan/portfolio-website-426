@@ -1,6 +1,6 @@
 # Prompt Engineering Studio
 
-**Role:** Founding and sole designer
+**Role:** Founding and Sole Designer
 **Timeline:** March 2023 – July 2025
 **Team:** Grew from 3 to 20+ over the project
 
@@ -18,97 +18,114 @@
 
 **Heading:** Every prompt test needed an engineering ticket.
 
-Every change meant another wait. Product managers had ideas for AI features but no way to build or test them without pulling in an engineer. In 2023, nobody at Workday had a faster path.
+Every change meant another wait. Product managers had ideas for AI features but no way to build or test them without pulling in an engineer and 2023, nobody at Workday had a good path.
 
 ---
 
 ## THE INSIGHT
 
-**Heading:** This was not just a tooling gap. It was a knowledge gap.
+**Heading:** This was both a tooling and knowledge gap.
 
-When I started, I barely understood prompt engineering myself. If I was going to design a tool that PMs could actually use, I had to learn it first — then figure out how to make that learning curve shorter for everyone else.
+When I started, I barely understood AI or prompt engineering myself. If I was going to design a tool that PMs could actually use, I had to learn it first and then figure out how to make that learning curve shorter for everyone else.
 
 ---
 
 ## DISCOVERY: WHAT RESEARCH ACTUALLY FOUND
 
-**Heading:** Five PMs. Five use cases. One consistent breakdown.
+**Heading:** Five PMs and five use cases
 
-Before designing anything, I ran a moderated usability study with five Product Managers across five Workday product lines: Job Descriptions, Machine Learning for Finance, VNDLY, Knowledge Base, and Growth Plans. Each came with a real use case. Each attempted to build a prompt using an early working prototype.
+Before designing anything, I ran a moderated usability study with five Product Managers across five Workday product lines: Job Descriptions, Finance, VNDLY, Knowledge Base, and Growth Plans. Each came with a real use case, and attempted to build a prompt using an early working prototype.
 
-**What broke, consistently:**
+**Our Research Goal:**
 
-**Action vs. Context wasn't intuitive.** Every participant struggled to distinguish the two fields — most wrote their entire prompt in one box, or put output instructions in the wrong place. The hint text was too similar between fields. The problem wasn't that the structure was wrong; it was that users had no prior mental model to attach it to.
+Understand if PMs could successfully create and test a prompt. We wanted to know could they grasp concepts like context, action, and examples within the product? 
 
-**The guidance was valuable but invisible.** I'd designed a prompt guide panel that opened when users clicked on a segment label. Those who found it rated it highly useful. Almost no one found it on their own.
+**The Results** 
 
-**Model selection created friction without value.** One participant put it directly: *"I feel like it almost puts more cognitive burden on me to actually see this. I don't know if this can be done behind the scenes by the ML team choosing a model based on testing they've done."* That quote became a design brief.
+Every participant struggled to distinguish the different fields in the product. Most wrote their entire prompt in one box, or put instructions in the wrong place. The hint text we had was not explicit enough to distinguish between the fields. I could see that the problem came down to users having no prior mental model to attach to the structure.
 
-**Template-able domains worked. Subjective ones didn't.** Job descriptions — a structured, industry-standard format — were easy to prompt for. Performance review content, feedback quality, talent assessments — highly configurable, deeply subjective — broke the example-driven model. There's no canonical template for what "good" feedback looks like.
+**The guidance was invisible.** I'd designed a prompt guide panel that opened when users clicked on a segment label. Those who found it rated it highly useful, however, almost no one found it on their own.
 
-**Users wanted traceability.** *"Appreciated the multiple prompt outputs, would like the ability to see the prompt associated with the output."* Without a link between prompt configuration and output, iterating felt arbitrary.
+**Model selection created friction without value.** One participant put it directly: *"I feel like it almost puts more cognitive burden on me to actually see this. I don't know if this can be done behind the scenes by the ML team choosing a model based on testing they've done."
 
-**Educational helpfulness rated 3–4 out of 5** — not bad for a first prototype, but with clear gaps in discoverability and scaffolding.
+**Template-able domains worked.** Job descriptions were a structured, industry-standard format and easy to prompt. Performance review content, feedback quality, talent assessments were highly configurable, deeply subjective space and broke the example-driven model. There's no real template for what "good" feedback looks like because it was so subjective.
+
+**Users wanted to see their run history.** *"Appreciated the multiple prompt outputs, would like the ability to see the prompt associated with the output."* This led us to add a prompt history and version management capability so iteration was better supported.
+
+**Over all the Educational helpfulness rated 3–4 out of 5**  This is not bad for a first prototype, but we clearly had some discoverability and scaffolding gaps.
 
 ---
 
 ## THE DECISION: KEEP THE STRUCTURE, FIX THE SCAFFOLDING
 
-After research, there was pressure to simplify the prompt composer to a single free-text input. I pushed back.
+After research, I had thought that removing the 3 segment structure and simplifying the prompt composer to a single free-text input would be the answer. Engineering pushed back, and after discussion we decided to enhance the educational scaffolding instead of removing the structure.
 
-The three-segment model — Action, Context, Example — was doing real work. Users who engaged with it wrote better prompts. The structured format forced PMs to articulate what they actually wanted from the model, rather than writing conversationally and hoping for the best.
+The three-segment model including Action, Context, Example, an important structure to keep. Users who engaged with it wrote better prompts and got better output. The structured format forced PMs to articulate what they actually wanted from the model, rather than writing conversationally and hoping for the best.
 
-The problem wasn't the structure. It was discoverability and onboarding.
-
-My response: redesign the educational scaffolding rather than remove the structure.
-- Rewrote hint text to be concrete and specific to each field
-- Made guide examples copy-pasteable — research showed this was the key unlock for hesitant users
-- Abstracted model selection with a smart default, keeping advanced options accessible but out of the critical path
-- Addressed the guide's discoverability in the first-time user flow
+The solution:
+- Rewrite hint text to be concrete and specific to each field
+- Create guide examples copy-pasteable, research showed this was the key unlock for hesitant users
+- Keeping advanced options accessible but less obvious and out of the critical path
+- Addressed the guide's discoverability by creating a first-time user flow
 
 ---
 
 ## WHAT I BUILT
 
-**Heading:** Six features that took a prompt from idea to production.
+**Heading:** The six features that took a prompt from idea to production.
 
-**01 — Prompt Builder**
-Structured fields for Action, Context, and Example — with redesigned educational scaffolding based on research findings.
+Our goal was to built the entire prompt lifecycle within the studio so it was the one stop to build, test and ship prompts to production.
 
-**02 — Variables System**
-Reusable prompts with dynamic data fields so the same prompt works across different roles, locations, and inputs.
+**1 Prompt Builder**
+Structured fields for Action, Context, and Example with  educational scaffolding based on research findings.
 
-**03 — Contextual Preview**
-See your prompt as the end user would, inside the actual product surface — not just raw output.
+**2 Variables System**
+Reusable prompts with dynamic data fields so the same prompt works across different roles, locations, and inputs. This also set us up for when we could bring in actual data fields from Workday.
 
-**04 — Evaluation Framework**
-A structured human-in-the-loop testing system for validating prompt quality before shipping. Mental model: a teacher grading a quiz. Test Suite = the quiz. Test Case = a single question. Running an Evaluation = grading. This framing was deliberate — PMs work alongside engineers, and software QA concepts gave them a bridge.
+**3 Contextual Preview**
+See your prompt as the end user would, inside the actual product surface to help with understanding and story telling.
 
-**05 — Version History**
-Go back to any previous version at any point. Addresses the traceability need surfaced directly in research.
+**4 Evaluation Framework**
+A structured human-in-the-loop testing system for validating prompt quality before shipping. 
 
-**06 — Deploy Handoff + Deploy Alerts**
-Everything an engineer needs to push to test or production in one place — plus two specific warning systems (Curly Braces Warning, Variables with Hyphens) that catch technical issues before they silently break in production. Designed by working backward from engineering constraints: what does a PM need to know before they publish that they can't discover until something breaks?
+The mental model we used was: a teacher grading a quiz. 
+	Test Suite = the quiz. 
+	Test Case = a single question. 
+	Running an Evaluation = grading. 
+
+This framing gave this concept of evaluations a universally known mental model and helped us with naming parts of the evaluation when the market had not set a standard industry term.
+
+**5 Version History**
+Go back to any previous version at any point, restore it and iterate.
+
+**6 Deploy Handoff + Deploy Alerts**
+Everything an engineer needs to push to test or production in one place, plus warnings that catch technical issues before they ship resulting in breaking production.
 
 ---
 
-## PROCESS
+## LEARNING MOMENT
 
-**Heading:** Seeing it built is faster than designing it blind.
+**Heading:** Seeing how it worked was faster
 
-Understanding LLM evaluations was genuinely hard. Rather than wireframe something I didn't fully grasp, I had an engineer build a working prototype in v0 so I could see how it functioned first. That changed how I work. For complex technical concepts, seeing the functionality first is faster than designing something I can't fully understand yet.
+Understanding LLM evaluations was genuinely hard for both me and the PM I was working with at the time. Rather than wireframe something I didn't fully grasp, I had an engineer build a working prototype in v0 so I could see how it functioned first. 
 
-The Prompt Lifecycle Map — a cross-functional Miro artifact showing the full path from Studio authoring to production deployment — became the most-referenced onboarding artifact for every product team that adopted the platform. Engineers and PMs were consistently confused about dependencies and timing. Making the lifecycle visible solved that.
+That changed how I work with AI from that moment. 
+
+For complex AI technical concepts, seeing the functionality gave me the information I needed to design an intuitive solution.
+
+The Prompt Lifecycle Map, a cross-functional Miro artifact showing the full path from Studio authoring to production deployment and became the most-referenced onboarding artifact for every product team that adopted the platform. Engineers and PMs were consistently confused about dependencies and timing. Making the lifecycle visible solved that.
 
 ---
 
 ## WHAT I ADVOCATED FOR THAT DIDN'T SHIP
 
-The Prompt Wizard was a design direction I believed in from early in the project: instead of asking PMs to understand prompt structure and fill in three blank fields, guide them through a wizard that asks about their use case and generates a well-formed prompt. Research from 2024 validated the concept.
+The Prompt Wizard was a design direction I believed in from early in the project: instead of asking PMs to understand prompt structure and fill in three blank fields, have them upload a PRD or describe the ideal output and it would generate a well-formed prompt. I ran a research study with my PM at the time and it was a validated concept.
 
-Leadership repeatedly deprioritized it. Engineering cost was the constraint.
+Leadership sadly deprioritized it with other priorities taking precedent.
 
-I include this because it's honest: I ran the research to validate the concept, made the case repeatedly, and was overruled. The research data became part of the roadmap conversation even after I transitioned. That's a form of influence that doesn't always show up in shipped features — but it's real.
+I include this because it's a part of the real process. While the research backed it up, and we had a working POC there was a lot of stress and pressure at the time to ship fast. I still beleive it would have been a tremendous help to give PMs a kick start.
+
+While I was not able to influence the roadmap in that moment, I still feel validated in my concept and at the same time respect the decision of leadership.
 
 ---
 
@@ -126,22 +143,4 @@ I include this because it's honest: I ran the research to validate the concept, 
 
 ## OUTCOME
 
-The team's track record on this project — shipping AI tooling that actually got adopted — was what moved us to Workday's highest-priority project: the Self-Service Agent. The Studio is still running and available to teams building prompts across Workday.
-
----
-
-## CLOSING QUOTE
-
-*"The fastest way to understand a new technology is to design for someone who knows even less than you do."*
-
----
-
-## VISUALS NEEDED
-
-Priority images for this case study:
-- Compose screen (populated, showing three segments)
-- Deploy Alerts: Curly Braces Warning (yellow warning state) — shows technical precision
-- Evaluate feature: Test Suite or empty state
-- All Published Prompts table — shows end-to-end pipeline thinking
-
-> **Note on the "2,000+ hackathon projects supported" stat:** This was in the previous version but not confirmed in source files. Do not include until verified.
+The team's track record on this project and shipping AI tooling that actually got adopted was what put my team on the map to develop Workday's highest-priority project: the Self-Service Agent. The Studio is still running and available to teams building prompts across Workday.

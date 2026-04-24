@@ -1,0 +1,194 @@
+{
+  "main": {
+    "id": "f0c18c67e3630b49",
+    "type": "split",
+    "children": [
+      {
+        "id": "d0c8e8ff2a3e35de",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dec72c8ee022dbcb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "case-studies/prompt-engineering-studio.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "prompt-engineering-studio"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2100e62969c6fc0f",
+    "type": "split",
+    "children": [
+      {
+        "id": "330124fe1dbbc5af",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "25ce9a1b8d9c19f2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "802d21eeeacb9f99",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "prompt-engineering-studio-review.md",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "28b9eef47d778f93",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "b3e00ad0d2a92802",
+    "type": "split",
+    "children": [
+      {
+        "id": "b1b8a73c134a39cf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cf9eea22e50b3286",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "review/genai-text-framework-review.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for genai-text-framework-review"
+            }
+          },
+          {
+            "id": "addbc264ba4cf2d1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "review/genai-text-framework-review.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from genai-text-framework-review"
+            }
+          },
+          {
+            "id": "7bd1e27ef686db51",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "41ba94ea6cdb5eda",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "8d358e4d72d1de2b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "review/genai-text-framework-review.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of genai-text-framework-review"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "dec72c8ee022dbcb",
+  "lastOpenFiles": [
+    "case-studies/genai-text-framework.md",
+    "case-studies/prompt-engineering-studio.md",
+    "review/prompt-engineering-studio-review.md",
+    "review/genai-text-framework-review.md",
+    "review/case-study-structure.md"
+  ]
+}

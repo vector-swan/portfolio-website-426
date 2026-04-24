@@ -1,10 +1,8 @@
-import BrandMonogram from "@/components/BrandMonogram";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
 import TalkSection from "@/components/TalkSection";
 import HowIWorkSection from "@/components/HowIWorkSection";
-import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
@@ -14,7 +12,6 @@ const Index = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-16">
           <a href="#" className="flex items-center gap-2 text-foreground group">
-            <BrandMonogram className="h-10 w-auto shrink-0 transition-opacity group-hover:opacity-90" aria-hidden />
             <span className="font-display font-bold text-xl leading-none">
               Mia Donnell<span className="text-coral">.</span>
             </span>
@@ -29,9 +26,6 @@ const Index = () => {
             <a href="#talk" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Talk
             </a>
-            <a href="#skills" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Expertise
-            </a>
             <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </a>
@@ -44,7 +38,6 @@ const Index = () => {
       <TalkSection />
       <AboutSection />
       <HowIWorkSection />
-      <SkillsSection />
       <ContactSection />
     </div>
   );

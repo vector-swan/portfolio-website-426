@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
+
+// ── Shared primitives ────────────────────────────────────────────────────────
 
 const Section = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollReveal(0.1);
@@ -13,8 +16,8 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
   );
 };
 
-const PinkLabel = ({ children }: { children: React.ReactNode }) => (
-  <p className="text-coral font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
+const PinkLabel = ({ children, light }: { children: React.ReactNode; light?: boolean }) => (
+  <p className={`font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3 ${light ? "text-[hsl(210,80%,78%)]" : "text-coral"}`}>
     {children}
   </p>
 );
@@ -30,46 +33,81 @@ const BlueBg = ({ children, className = "" }: { children: React.ReactNode; class
   </section>
 );
 
+// ── ClickImg — unified zoomable image ────────────────────────────────────────
+
+type LightboxState = { src: string; alt: string; caption?: string } | null;
+
+const ClickImg = ({
+  src,
+  alt,
+  caption,
+  imgClassName = "",
+  fill = false,
+  onOpen,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  imgClassName?: string;
+  fill?: boolean;
+  onOpen: (src: string, alt: string, caption?: string) => void;
+}) => (
+  <button
+    type="button"
+    onClick={() => onOpen(src, alt, caption)}
+    className={`block w-full cursor-zoom-in group overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 ${fill ? "h-full" : ""}`}
+    aria-label={`View full size: ${alt}`}
+  >
+    <img
+      src={src}
+      alt={alt}
+      className={`block w-full transition-transform duration-300 ease-out group-hover:scale-[1.03] ${fill ? "h-full object-cover" : "h-auto"} ${imgClassName}`}
+    />
+  </button>
+);
+
+// ── Data ─────────────────────────────────────────────────────────────────────
+
 const features = [
   {
     num: "01",
     name: "Prompt Builder",
-    desc: "Structured fields for Action, Context, and Example — with redesigned educational scaffolding based on research findings. Copy-pasteable guide examples were the key unlock for hesitant users.",
+    desc: "Structured fields for Action, Context, and Example, with rewritten hint text and copy-pasteable guide examples based on research findings. The copy-pasteable examples were what finally got hesitant users moving.",
   },
   {
     num: "02",
-    name: "Variables System",
-    desc: "Reusable prompts with dynamic data fields so the same prompt works across different roles, locations, and inputs — without duplicating the prompt for each use case.",
+    name: "Evaluation Framework",
+    desc: "Structured prompt testing before shipping. Mental model: a teacher grading a quiz. Test Suite = the quiz. Test Case = a single question. Running an Evaluation = grading. This framing was deliberate: it gave PMs a bridge from software QA concepts they already knew.",
   },
   {
     num: "03",
-    name: "Contextual Preview",
-    desc: "See your prompt as the end user would, inside the actual product surface — not just raw output. Addresses the gap between what PMs intended and what shipped.",
+    name: "Version History",
+    desc: "Go back to any previous version at any point. Came directly from research: participants wanted to see which prompt version generated which output. Without that link, iterating felt arbitrary.",
   },
   {
     num: "04",
-    name: "Evaluation Framework",
-    desc: "Structured human-in-the-loop testing before shipping. Mental model: a teacher grading a quiz. Test Suite = the quiz. Test Case = a single question. Running an Evaluation = grading. This framing was deliberate — it gave PMs a bridge from software QA concepts they already knew.",
-  },
-  {
-    num: "05",
-    name: "Version History",
-    desc: "Go back to any previous version at any point. Addresses the traceability need surfaced directly in research: \"Appreciated the multiple prompt outputs, would like the ability to see the prompt associated with the output.\"",
-  },
-  {
-    num: "06",
     name: "Deploy Handoff + Deploy Alerts",
-    desc: "Everything an engineer needs to push to test or production in one place — plus two warning systems (Curly Braces Warning, Variables with Hyphens) that catch technical issues before they silently break in production.",
+    desc: "Everything an engineer needs to push to test or production in one place, plus two warning systems (Curly Braces Warning, Variables with Hyphens) that catch technical issues before they silently break in production. Syntax errors in prompts fail silently. These alerts are a quality gate between the Studio and production.",
   },
 ];
 
-const stats = [
+const allStats = [
   { number: "450", label: "unique internal users" },
-  { number: "34%", label: "weekly stickiness — SaaS average is 13%" },
+  { number: "34%", label: "weekly stickiness, more than 2x the SaaS average of 13%" },
   { number: "3,808", label: "prompt generations in the first 30 days" },
+  { number: "~6,200", label: "generation runs per month by June 2025" },
+  { number: "8/8", label: "users preferred the new Evaluate workflow over manual testing" },
+  { number: "17", label: "active use cases on the platform by mid-2025" },
 ];
+
+// ── Page ─────────────────────────────────────────────────────────────────────
 
 const PromptEngineeringStudio = () => {
+  const [lightbox, setLightbox] = useState<LightboxState>(null);
+
+  const openLightbox = (src: string, alt: string, caption?: string) =>
+    setLightbox({ src, alt, caption });
+
   return (
     <div className="min-h-screen">
       {/* Nav */}
@@ -89,18 +127,17 @@ const PromptEngineeringStudio = () => {
 
       {/* 1. Hero */}
       <BlueBg>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-24 md:pt-44 md:pb-36">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-16 md:pt-44 md:pb-20">
           <Section>
-            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white mb-8">
-              Designing the tool that taught Workday how to prompt.
+            <h1 className="text-white/50 font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
+              Prompt Engineering Studio
             </h1>
-            <div className="flex flex-wrap gap-3">
-              {["Sole Designer · Founding", "2023–2025", "Team: 3 to 20+"].map((chip) => (
-                <span key={chip} className="text-xs text-white/80 font-body border border-white/20 rounded-full px-4 py-1.5">
-                  {chip}
-                </span>
-              ))}
-            </div>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-white mb-6">
+              Designing the tool that taught Workday how to prompt.
+            </h2>
+            <p className="font-body text-white/50 text-sm md:text-base">
+              Sole Designer · Founding&nbsp;&nbsp;|&nbsp;&nbsp;2023–2025&nbsp;&nbsp;|&nbsp;&nbsp;Team: 3 to 20+
+            </p>
           </Section>
         </div>
       </BlueBg>
@@ -113,81 +150,49 @@ const PromptEngineeringStudio = () => {
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
               Every prompt test needed an engineering ticket.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
-              Every change meant another wait. Product managers had ideas for AI features but no way to build or test them without pulling in an engineer. In 2023, nobody at Workday had a faster path. I was hired to design the tool that would change that.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
+              Before this tool existed, PMs had no independent path to building or testing AI features. Every prompt idea, every tweak, every iteration, required pulling an engineer off something else. There was no way to see if a prompt worked without filing a ticket and waiting. I was hired to change that. By the time we shipped, the feedback loop that had taken a month took a week.
             </p>
-          </Section>
-        </div>
-      </section>
-
-      {/* 3. The Insight */}
-      <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
-          <Section>
-            <PinkLabel>THE INSIGHT</PinkLabel>
-            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              This was not just a tooling gap. It was a knowledge gap.
-            </h2>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
-              When I started, I barely understood prompt engineering myself. If I was going to design a tool that PMs could actually use, I had to learn it first — then figure out how to make that learning curve shorter for everyone else. The real design problem wasn't the interface. It was the mental model.
+              I joined as the sole designer on a founding team of four. No PM, which meant I was deciding what to build, not just designing it. When our first PM joined I shifted into roadmap collaboration, but in those early months I was making both product and design calls.
             </p>
           </Section>
         </div>
       </section>
 
       {/* 4. Discovery */}
-      <section className="bg-white" style={{ backgroundImage: "none" }}>
+      <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel>DISCOVERY: WHAT RESEARCH ACTUALLY FOUND</PinkLabel>
+            <PinkLabel>DISCOVERY</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              Five PMs. Five use cases. One consistent breakdown.
+              Five PMs and five different use cases.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
-              Before designing anything, I ran a moderated usability study with five Product Managers across five Workday product lines: Job Descriptions, Machine Learning for Finance, VNDLY, Knowledge Base, and Growth Plans. Each came with a real use case. Each attempted to build a prompt using an early working prototype.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-4">
+              I used a working POC engineering and I had built to run a usability study with five PMs across five Workday product lines.
             </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mb-12">
-              {[
-                {
-                  finding: "Action vs. Context wasn't intuitive",
-                  detail: "Every participant struggled to distinguish the two fields. Most wrote their entire prompt in one box. The problem wasn't the structure — it was that users had no prior mental model to attach it to.",
-                },
-                {
-                  finding: "The guidance was valuable but invisible",
-                  detail: "I'd designed a prompt guide panel triggered by segment labels. Those who found it rated it highly useful. Almost no one found it on their own.",
-                },
-                {
-                  finding: "Model selection created friction without value",
-                  detail: "Template-able use cases worked. Subjective ones didn't. Job descriptions — a structured, industry-standard format — were easy to prompt for. Performance reviews and talent assessments broke the example-driven model entirely.",
-                },
-                {
-                  finding: "Users wanted traceability",
-                  detail: "Without a link between prompt configuration and output, iterating felt arbitrary. This finding directly shaped the Version History feature.",
-                },
-              ].map((item) => (
-                <div key={item.finding} className="rounded-xl border border-border p-5">
-                  <p className="font-display font-semibold text-foreground text-sm mb-2">{item.finding}</p>
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">{item.detail}</p>
-                </div>
-              ))}
+            <p className="font-body font-semibold text-foreground text-sm max-w-2xl mb-2">The tool structured prompts into three fields:</p>
+            <ul className="font-body text-muted-foreground text-sm max-w-2xl mb-6 space-y-1 list-none">
+              <li><span className="font-semibold text-foreground">Action:</span> what you want the AI to do</li>
+              <li><span className="font-semibold text-foreground">Context:</span> background information</li>
+              <li><span className="font-semibold text-foreground">Example:</span> a sample of the ideal output</li>
+            </ul>
+            <div className="max-w-lg mb-10 rounded-xl border border-border p-6 bg-white">
+              <p className="font-display font-semibold text-foreground text-sm mb-4">Each PM came with a real use case and tried to build a prompt from scratch. Here's what we found.</p>
+              <ul className="space-y-3 list-disc pl-5">
+                {[
+                  { finding: "The three fields weren't clearly distinct", detail: "most participants put everything into one box." },
+                  { finding: "Guidance was there but nobody found it", detail: "almost no one discovered the help panel on their own." },
+                  { finding: "Too many advanced controls", detail: "model settings overwhelmed PMs who lacked the context to choose." },
+                  { finding: "No way to track iterations", detail: "every prompt version felt like starting over." },
+                ].map((item) => (
+                  <li key={item.finding} className="font-body text-muted-foreground text-sm leading-relaxed">
+                    <span className="font-semibold text-foreground">{item.finding}:</span> {item.detail}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Research quotes */}
-            <div className="space-y-4 max-w-2xl">
-              <blockquote className="border-l-4 border-coral pl-5">
-                <p className="font-display italic text-foreground text-base md:text-lg leading-relaxed">
-                  "I feel like it almost puts more cognitive burden on me to actually see this. I don't know if this can be done behind the scenes by the ML team."
-                </p>
-                <p className="font-body text-muted-foreground text-xs mt-2">— PM participant, on model selection. That quote became a design brief.</p>
-              </blockquote>
-              <blockquote className="border-l-4 border-coral pl-5">
-                <p className="font-display italic text-foreground text-base md:text-lg leading-relaxed">
-                  "Appreciated the multiple prompt outputs, would like the ability to see the prompt associated with the output."
-                </p>
-                <p className="font-body text-muted-foreground text-xs mt-2">— PM participant, on traceability. This became Version History.</p>
-              </blockquote>
-            </div>
           </Section>
         </div>
       </section>
@@ -196,25 +201,25 @@ const PromptEngineeringStudio = () => {
       <BlueBg>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel>THE DECISION</PinkLabel>
+            <PinkLabel light>THE DECISION</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-6">
-              Keep the structure. Fix the scaffolding.
+              After research, I wanted one box. Engineering pushed back.
             </h2>
             <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              After research, there was pressure to simplify the prompt composer to a single free-text input. I pushed back.
+              My read of the research was to simplify the composer to a single free-text input. Engineering disagreed. They'd seen what structured prompts produced versus unstructured ones, and the data backed them up. So we found a middle ground: default to showing one segment, with the option to expand to the full three-part structure for users who wanted more control.
             </p>
-            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-8">
-              The three-segment model — Action, Context, Example — was doing real work. Users who engaged with it wrote better prompts. The structured format forced PMs to articulate what they actually wanted from the model, rather than writing conversationally and hoping for the best. The problem wasn't the structure. It was discoverability and onboarding.
+            <p className="font-body font-semibold text-white text-base md:text-lg max-w-2xl leading-relaxed mb-8">
+              So instead of removing the structure, I redesigned the scaffolding around it.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
               {[
                 "Rewrote hint text to be concrete and specific to each field",
-                "Made guide examples copy-pasteable — research showed this was the key unlock for hesitant users",
-                "Abstracted model selection with a smart default, keeping advanced options accessible but out of the critical path",
-                "Addressed guide discoverability in the first-time user flow",
+                "Made guide examples copy-pasteable; that was the thing that got hesitant users moving",
+                "Abstracted model selection with a smart default, keeping advanced options available without putting them in everyone's way",
+                "Fixed guide discoverability in the first-time user flow",
               ].map((item) => (
                 <div key={item} className="rounded-xl p-4 flex items-start gap-3" style={{ background: "rgba(255,255,255,0.1)" }}>
-                  <span className="text-coral mt-0.5 flex-shrink-0">↗</span>
+                  <span className="text-white mt-0.5 flex-shrink-0">↗</span>
                   <p className="font-body text-white/80 text-sm leading-relaxed">{item}</p>
                 </div>
               ))}
@@ -229,7 +234,7 @@ const PromptEngineeringStudio = () => {
           <Section>
             <PinkLabel>WHAT I BUILT</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-10">
-              Six features that took a prompt from idea to production.
+              Four features that took a prompt from idea to production.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
               {features.map((f) => (
@@ -245,22 +250,24 @@ const PromptEngineeringStudio = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="rounded-xl overflow-hidden border border-border shadow-sm">
                 <div className="bg-muted/30 px-4 py-2 border-b border-border">
-                  <p className="font-body text-xs text-muted-foreground font-medium">Compose — structured three-segment prompt builder</p>
+                  <p className="font-body text-xs text-muted-foreground font-medium">Compose: structured three-segment prompt builder</p>
                 </div>
-                <img
-                  src="/Images/AI%20Card%20Guidelines/GenAI%20Studio/Compose%20_%20Populated%20_%20One%20Segment.png"
+                <ClickImg
+                  src="/images/genai-studio/compose-populated-one-segment.png"
                   alt="GenAI Studio Compose screen showing the three-segment prompt builder with Action, Context, and Example fields"
-                  className="w-full h-auto"
+                  caption="Compose: structured three-segment prompt builder"
+                  onOpen={openLightbox}
                 />
               </div>
               <div className="rounded-xl overflow-hidden border border-border shadow-sm">
                 <div className="bg-muted/30 px-4 py-2 border-b border-border">
-                  <p className="font-body text-xs text-muted-foreground font-medium">Deploy — everything needed to push to production</p>
+                  <p className="font-body text-xs text-muted-foreground font-medium">Deploy: everything needed to push to production</p>
                 </div>
-                <img
-                  src="/Images/AI%20Card%20Guidelines/GenAI%20Studio/Deploy%20_%201%20Published.png"
+                <ClickImg
+                  src="/images/genai-studio/deploy-1-published.png"
                   alt="GenAI Studio Deploy screen showing published prompts table with production deployment status"
-                  className="w-full h-auto"
+                  caption="Deploy: everything needed to push to production"
+                  onOpen={openLightbox}
                 />
               </div>
             </div>
@@ -274,94 +281,76 @@ const PromptEngineeringStudio = () => {
           <Section>
             <PinkLabel>PROCESS</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              Seeing it built is faster than designing it blind.
+              I'd rather see it working than wireframe something I don't fully understand.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              Understanding LLM evaluations was genuinely hard. Rather than wireframe something I didn't fully grasp, I had an engineer build a working prototype in v0 so I could see how it functioned first. That changed how I work. For complex technical concepts, seeing the functionality first is faster than designing something I can't fully understand yet.
-            </p>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
-              The Prompt Lifecycle Map — a cross-functional Miro artifact showing the full path from Studio authoring to production deployment — became the most-referenced onboarding artifact for every product team that adopted the platform. Engineers and PMs were consistently confused about dependencies and timing. Making the lifecycle visible solved that.
+              The bigger cross-functional move was the Prompt Lifecycle Map. Engineers and PMs had completely different pictures of how a prompt went from idea to production, and that confusion showed up as bugs, missed handoffs, and rework. I mapped the full lifecycle from Studio authoring through deployment and made it the shared reference. It became the first thing every new product team saw when they adopted the platform.
             </p>
           </Section>
         </div>
       </section>
 
-      {/* 8. Advocacy: What Didn't Ship */}
+      {/* 8. What I Advocated For That Didn't Ship */}
       <section className="bg-white" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
             <PinkLabel>WHAT I ADVOCATED FOR THAT DIDN'T SHIP</PinkLabel>
-            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-8">
               I ran the research to validate the concept. I was overruled.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              The Prompt Wizard was a design direction I believed in from early in the project: instead of asking PMs to understand prompt structure and fill in three blank fields, guide them through a wizard that asks about their use case and generates a well-formed prompt. Research from 2024 validated the concept.
-            </p>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              Leadership repeatedly deprioritized it. Engineering cost was the constraint.
-            </p>
-            <div className="rounded-xl border border-border p-6 max-w-2xl">
-              <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                I include this because it's honest: I ran the research, made the case, and was overruled. The research data became part of the roadmap conversation even after I transitioned. That's a form of influence that doesn't always show up in shipped features — but it's real. The 15.6% stickiness figure against a 25%+ target is evidence of the onboarding gap the Prompt Wizard would have addressed.
-              </p>
+
+            <div className="space-y-6 max-w-2xl">
+              <div>
+                <h2 className="font-display font-bold text-lg md:text-xl text-foreground mb-2">
+                  The Prompt Wizard was a design direction I believed in.
+                </h2>
+                <p className="font-body text-muted-foreground text-base md:text-lg leading-relaxed">
+                  Instead of asking PMs to understand prompt structure and fill in three blank fields, guide them through a wizard that asks about their use case and generates a well-formed prompt. Research from 2024 validated the concept. Leadership deprioritized it. Engineering cost was the constraint.
+                </p>
+              </div>
+              <div>
+                <h2 className="font-display font-bold text-lg md:text-xl text-foreground mb-2">
+                  That kind of influence doesn't show up in shipped features, but it's real.
+                </h2>
+                <p className="font-body text-muted-foreground text-base md:text-lg leading-relaxed">
+                  I ran the research, made the case, and was overruled. The research data became part of the roadmap conversation even after I transitioned. Looking at how many prompt engineering tools exist today, I still believe the concept was right. The Prompt Wizard would have mattered.
+                </p>
+              </div>
             </div>
           </Section>
         </div>
       </section>
 
-      {/* 9. Impact */}
+      {/* 9. Impact & Outcome */}
       <BlueBg>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel>IMPACT</PinkLabel>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-              {stats.map((s) => (
-                <div key={s.number} className="text-center">
-                  <p className="text-white font-display font-bold text-4xl md:text-5xl mb-3">{s.number}</p>
-                  <p className="font-body text-white/70 text-sm leading-relaxed">{s.label}</p>
+            <PinkLabel light>IMPACT & OUTCOME</PinkLabel>
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-10">
+              Now PMs can build and test prompts.
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+              {allStats.map((s) => (
+                <div
+                  key={s.number}
+                  className="rounded-xl p-5 text-center"
+                  style={{ background: "hsla(210, 70%, 65%, 0.18)" }}
+                >
+                  <p className="text-white font-display font-bold text-3xl md:text-4xl mb-2">{s.number}</p>
+                  <p className="font-body text-white/70 text-xs leading-relaxed">{s.label}</p>
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">
-              {[
-                { stat: "~6,200", label: "generation runs per month by June 2025" },
-                { stat: "8/8", label: "users preferred the new Evaluate workflow over manual testing" },
-                { stat: "17", label: "active use cases on the platform by mid-2025" },
-              ].map((item) => (
-                <div key={item.label} className="rounded-xl p-4 text-center" style={{ background: "rgba(255,255,255,0.1)" }}>
-                  <p className="font-display font-bold text-white text-2xl mb-1">{item.stat}</p>
-                  <p className="font-body text-white/60 text-xs leading-relaxed">{item.label}</p>
-                </div>
-              ))}
-            </div>
+
+            <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed">
+              This started as a POC. Four people, no roadmap guarantee, no dedicated PM. The adoption numbers made the case for investment and the team grew from four to more than twenty. That track record was what moved us to Workday's highest-priority project: the Self-Service Agent. The Studio is still running and available to teams building prompts across Workday.
+            </p>
           </Section>
         </div>
       </BlueBg>
 
-      {/* 10. Outcome */}
-      <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
-          <Section>
-            <PinkLabel>OUTCOME</PinkLabel>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
-              The team's track record on this project — shipping AI tooling that actually got adopted — was what moved us to Workday's highest-priority project: the Self-Service Agent. The Studio is still running and available to teams building prompts across Workday.
-            </p>
-          </Section>
-        </div>
-      </section>
-
-      {/* 11. Closing Quote */}
-      <section className="bg-white" style={{ backgroundImage: "none" }}>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-36">
-          <Section>
-            <p className="font-display italic text-foreground text-2xl md:text-3xl lg:text-4xl text-center leading-snug max-w-3xl mx-auto">
-              "The fastest way to understand a new technology is to design for someone who knows even less than you do."
-            </p>
-          </Section>
-        </div>
-      </section>
-
-      {/* 12. Footer Nav */}
+      {/* 10. Footer Nav */}
       <section className="bg-white border-t border-border" style={{ backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between">
           <Link
@@ -378,6 +367,40 @@ const PromptEngineeringStudio = () => {
           </Link>
         </div>
       </section>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-16 cursor-default animate-in fade-in duration-200"
+          onClick={() => setLightbox(null)}
+        >
+          <div
+            className="absolute inset-0 backdrop-blur-sm"
+            style={{ background: "hsla(220, 40%, 12%, 0.72)" }}
+          />
+          <div
+            className="relative animate-in zoom-in-95 duration-200 cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="block max-w-[90vw] max-h-[85vh] w-auto h-auto rounded-2xl shadow-2xl ring-1 ring-white/10"
+            />
+            {lightbox.caption && (
+              <p className="text-white/50 text-sm mt-4 text-center font-body">{lightbox.caption}</p>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            className="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all duration-150 cursor-pointer"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </div>
   );
 };

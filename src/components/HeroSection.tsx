@@ -21,15 +21,15 @@ const HeroSection = () => {
             className="font-display font-700 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.08] tracking-tight text-foreground mb-8 opacity-0 animate-fade-up"
             style={{ animationDelay: "0.15s" }}
           >
-            Designing foundational systems where AI{" "}
-            <em className="text-primary italic">actually</em> works
+            Designing systems with AI that{" "}
+            <em className="text-primary italic">actually</em> work
           </h1>
 
           <p
             className="text-muted-foreground text-lg md:text-xl max-w-2xl mb-10 opacity-0 animate-fade-up leading-relaxed"
             style={{ animationDelay: "0.3s" }}
           >
-            Ten years designing enterprise software at scale. Three years leading Workday's AI-first initiatives. I build horizontal frameworks, multi-agent systems, and the developer tools that make them scalable.
+            Over seven years designing products at scale including three leading Workday's AI-first initiatives. I build the systems, frameworks, and developer tools that make AI features consistent, trustworthy, and fast to ship.
           </p>
 
           <div className="opacity-0 animate-fade-up" style={{ animationDelay: "0.45s" }}>
