@@ -196,23 +196,19 @@ const GenAITextFramework = () => {
               We designed for two audiences at once.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-white rounded-xl p-4 flex flex-row items-center gap-5">
-                <img src="/images/text-framework/single-lego.png" alt="Single lego block illustration" className="w-28 h-28 object-contain flex-shrink-0" />
-                <div>
-                  <p className="text-coral font-display font-bold text-sm uppercase tracking-widest mb-2">Application Teams</p>
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                    Product teams building Gen AI features into their products. If the framework didn't work for them, it would never reach end users at all. The Job Requisition team was one of our first partners.
-                  </p>
-                </div>
+              <div className="bg-white rounded-xl p-6">
+                <span className="text-coral font-display font-bold text-lg">01</span>
+                <h3 className="font-display font-bold text-lg text-foreground mt-2 mb-2">Application Teams</h3>
+                <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                  Product teams building Gen AI features into their products. If the framework didn't work for them, it would never reach end users at all. The Job Requisition team was one of our first partners.
+                </p>
               </div>
-              <div className="bg-white rounded-xl p-4 flex flex-row items-center gap-5">
-                <img src="/images/text-framework/multi-lego-blocks.png" alt="Multi lego blocks illustration" className="w-28 h-28 object-contain flex-shrink-0" />
-                <div>
-                  <p className="text-coral font-display font-bold text-sm uppercase tracking-widest mb-2">End Users</p>
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">
-                    Managers drafting job descriptions and emails, recruiters reviewing candidate feedback, HR handling comms. The people who actually have to trust what AI hands them.
-                  </p>
-                </div>
+              <div className="bg-white rounded-xl p-6">
+                <span className="text-coral font-display font-bold text-lg">02</span>
+                <h3 className="font-display font-bold text-lg text-foreground mt-2 mb-2">End Users</h3>
+                <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                  Managers drafting job descriptions and emails, recruiters reviewing candidate feedback, HR handling comms. The people who actually have to trust what AI hands them.
+                </p>
               </div>
             </div>
             <p className="font-body text-foreground text-base md:text-lg max-w-2xl leading-relaxed">The framework had to be easy enough for application teams to adopt, and trustworthy enough for end users to rely on.</p>
