@@ -22,7 +22,7 @@ const HeroSection = () => {
             style={{ animationDelay: "0.15s" }}
           >
             Designing systems with AI that{" "}
-            <em className="text-primary italic">actually</em> work
+            <em className="text-primary italic">actually</em> work.
           </h1>
 
           <p
