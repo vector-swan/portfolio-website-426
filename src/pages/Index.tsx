@@ -1,7 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
-import TalkSection from "@/components/TalkSection";
 import HowIWorkSection from "@/components/HowIWorkSection";
 import ContactSection from "@/components/ContactSection";
 
@@ -23,9 +22,6 @@ const Index = () => {
             <a href="#case-studies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Work
             </a>
-            <a href="#talk" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Talk
-            </a>
             <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </a>
@@ -35,7 +31,6 @@ const Index = () => {
 
       <HeroSection />
       <CaseStudiesSection />
-      <TalkSection />
       <AboutSection />
       <HowIWorkSection />
       <ContactSection />
