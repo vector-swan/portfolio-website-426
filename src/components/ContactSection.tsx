@@ -23,14 +23,10 @@ const ContactSection = () => {
           }`}
         >
           <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl text-white mb-4">
-            The future of AI design is human-centered.
+            I build things that matter at scale.
           </h2>
-          <p className="text-coral font-body font-medium text-base md:text-lg tracking-widest uppercase mb-6">
-            Let's build it together.
-          </p>
-          <p className="text-white/70 text-lg md:text-xl mb-10 leading-relaxed">
-            I'm drawn to ambitious, human-centered AI challenges. If you're building something at the edge of
-            what's possible, I'd love to be part of the story.
+          <p className="font-body font-medium text-base md:text-lg tracking-widest uppercase mb-10" style={{ color: "hsl(210,80%,78%)" }}>
+            Let's talk.
           </p>
 
           <div className="flex flex-row gap-6 items-center">
