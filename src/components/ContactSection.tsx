@@ -22,12 +22,9 @@ const ContactSection = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl text-white mb-4">
-            I build things that matter at scale.
+          <h2 className="font-display font-700 text-3xl md:text-4xl lg:text-5xl text-white mb-10">
+            I build things that<br /><em className="italic">matter</em> at scale.
           </h2>
-          <p className="font-body font-medium text-base md:text-lg tracking-widest uppercase mb-10" style={{ color: "hsl(210,80%,78%)" }}>
-            Let's talk.
-          </p>
 
           <div className="flex flex-row gap-6 items-center">
             <a
