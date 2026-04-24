@@ -7,16 +7,13 @@ const AboutSection = () => {
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden" style={{ background: "#F9EEF2" }} ref={ref}>
       <div className="container mx-auto px-6 md:px-12 lg:px-20 relative">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-stretch">
           <div
             className={`md:col-span-5 md:col-start-1 transition-all duration-700 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
             }`}
           >
-            <div className="relative">
-              <img src={miaPhoto} alt="Mia Donnell" className="w-full aspect-[3/4] rounded-2xl object-cover object-top" />
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl bg-rose/60" />
-            </div>
+            <img src={miaPhoto} alt="Mia Donnell" className="w-full h-full rounded-2xl object-cover object-[center_20%]" />
           </div>
 
           <div
