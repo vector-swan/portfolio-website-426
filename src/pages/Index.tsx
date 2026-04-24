@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
@@ -5,6 +7,17 @@ import HowIWorkSection from "@/components/HowIWorkSection";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
+      }
+    }
+  }, [hash]);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Nav */}
