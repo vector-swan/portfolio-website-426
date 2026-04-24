@@ -3,7 +3,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const tools = [
   { num: "01", name: "Cursor + Claude Code", desc: "I write and prototype code daily. This portfolio was built with both." },
   { num: "02", name: "Claude & Gemini", desc: "Research, writing, pressure-testing design decisions, and thinking through edge cases before presenting to teams." },
-  { num: "03", name: "Lovable", desc: "Rapid UI prototyping. When I need to show something fast, I build it instead of wireframing it." },
+  { num: "03", name: "AI Makers Club", desc: "I co-founded a community at Workday where designers learn to build with AI tools. We meet bi-weekly to share projects, experiment together, and push each other's thinking. Teaching others has made me sharper." },
 ];
 
 
