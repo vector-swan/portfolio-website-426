@@ -29,12 +29,12 @@ const AboutSection = () => {
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
               I'm a Senior Product Designer with{" "}
-              <span className="text-foreground font-medium">ten years shipping enterprise software at scale</span>.
-              Since 2023, I've led Workday's AI-first design work. The GenAI Text Framework, the Prompt Engineering Studio, and cross-platform agent experiences across five surfaces.
+              <span className="text-foreground font-medium">7+ years shipping enterprise software at scale</span>.
+              Since 2023, I've led Workday's AI-first design work including the GenAI Text Framework, the Prompt Engineering Studio, and cross-platform agent experiences across five surfaces.
             </p>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               I work in the space where{" "}
-              <span className="text-coral font-medium">deeply technical systems meet everyday humans</span>. My obsession is foundational design. The invisible infrastructure that makes new technology usable, scalable, and trustworthy at enterprise scale.
+              <span className="text-coral font-medium">deeply technical systems meet everyday humans</span>. My passion is foundational design. The invisible infrastructure that makes new technology usable, scalable, and trustworthy at enterprise scale.
             </p>
           </div>
         </div>
