@@ -37,8 +37,8 @@ const MultiSurfaceAgentDesign = () => {
             Mia Donnell<span className="text-coral">.</span>
           </Link>
           <div className="hidden sm:flex gap-8">
-            <Link to="/#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</Link>
             <Link to="/#case-studies" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Work</Link>
+            <Link to="/#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</Link>
             <Link to="/#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
           </div>
         </div>
