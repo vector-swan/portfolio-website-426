@@ -9,17 +9,19 @@ import MultiSurfaceAgentDesign from "@/pages/MultiSurfaceAgentDesign";
 import NotFound from "@/pages/NotFound";
 
 const App = () => (
-  <PasswordGate>
-    <ScrollToTop />
-    <Routes>
-      <Route path="/" element={<Index />} />
-      <Route path="/genai-text-framework" element={<GenAITextFramework />} />
-      <Route path="/prompt-engineering-studio" element={<PromptEngineeringStudio />} />
-      <Route path="/multi-surface-agent-design" element={<MultiSurfaceAgentDesign />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </PasswordGate>
-  <Analytics />
+  <>
+    <PasswordGate>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/genai-text-framework" element={<GenAITextFramework />} />
+        <Route path="/prompt-engineering-studio" element={<PromptEngineeringStudio />} />
+        <Route path="/multi-surface-agent-design" element={<MultiSurfaceAgentDesign />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </PasswordGate>
+    <Analytics />
+  </>
 );
 
 export default App;
