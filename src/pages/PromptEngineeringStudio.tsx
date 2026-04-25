@@ -128,9 +128,9 @@ const PromptEngineeringStudio = () => {
       <BlueBg>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-0 md:pt-44">
           <Section>
-            <h1 className="text-white/50 font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
+            <p className="text-white/50 font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
               Prompt Engineering Studio
-            </h1>
+            </p>
             <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-white mb-6">
               Designing the tool that <em className="italic">taught</em><br />Workday how to prompt.
             </h2>
@@ -448,7 +448,7 @@ const PromptEngineeringStudio = () => {
           <button
             type="button"
             onClick={() => setLightbox(null)}
-            className="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all duration-150 cursor-pointer"
+            className="absolute top-5 right-5 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all duration-150 cursor-pointer"
             aria-label="Close"
           >
             ✕

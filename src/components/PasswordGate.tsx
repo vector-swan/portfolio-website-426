@@ -49,7 +49,9 @@ const PasswordGate = ({ children }: { children: React.ReactNode }) => {
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <label htmlFor="password-input" className="sr-only">Password</label>
             <input
+              id="password-input"
               type="password"
               value={attempt}
               onChange={(e) => {
@@ -58,6 +60,7 @@ const PasswordGate = ({ children }: { children: React.ReactNode }) => {
               }}
               placeholder="Password"
               autoFocus
+              aria-describedby={error ? "password-error" : undefined}
               className="w-full bg-muted/80 border border-border rounded-full px-5 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-coral transition-colors text-base"
             />
             <button
@@ -67,7 +70,7 @@ const PasswordGate = ({ children }: { children: React.ReactNode }) => {
               Enter &rarr;
             </button>
             {error && (
-              <p className="text-coral text-sm mt-2 font-body">
+              <p id="password-error" role="alert" className="text-coral text-sm mt-2 font-body">
                 That password did not work. Double check with whoever shared the link.
               </p>
             )}

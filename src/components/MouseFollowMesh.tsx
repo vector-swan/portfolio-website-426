@@ -26,7 +26,7 @@ const MouseFollowMesh = ({ variant = "hero" }: { variant?: Variant }) => {
   const showFourth = variant === "hero";
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
       <div className="absolute inset-0" style={wrap(x, y, 56)}>
         <div
           className="absolute rounded-full"
