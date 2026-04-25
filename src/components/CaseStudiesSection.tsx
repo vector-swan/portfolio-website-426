@@ -108,11 +108,7 @@ const CaseStudiesSection = () => {
                       className={study.imageClass}
                     />
                   )}
-                  {!study.image && (
-                    <span className="relative font-display text-white/80 text-sm tracking-widest uppercase">
-                      Coming Soon
-                    </span>
-                  )}
+                  {!study.image && null}
                 </div>
 
                 <div className="p-6 flex flex-col flex-1">
@@ -128,11 +124,7 @@ const CaseStudiesSection = () => {
                     <span className={`font-display font-semibold text-sm ${study.accentLink} group-hover:underline`}>
                       View Case Study →
                     </span>
-                  ) : (
-                    <span className={`font-display font-semibold text-sm ${study.accentLink} opacity-50`}>
-                      Coming Soon
-                    </span>
-                  )}
+                  ) : null}
                 </div>
               </>
             );
