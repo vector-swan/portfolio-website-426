@@ -41,19 +41,6 @@ const caseStudies: CaseStudy[] = [
     accentLink: "text-coral",
     href: "/prompt-engineering-studio",
   },
-  {
-    title: "Multi-Surface Agent Design",
-    description:
-      "Coordinating five product teams to ship Workday's first AI agent consistently across web, mobile, Slack, Teams, and Sana.",
-    image: null,
-    bgStyle: {
-      background:
-        "radial-gradient(circle at 30% 20%, hsla(210,70%,55%,1) 0%, hsla(220,60%,45%,1) 55%, hsla(230,70%,35%,1) 100%)",
-    },
-    imageClass: "",
-    accentLink: "text-coral",
-    href: null,
-  },
 ];
 
 const CaseStudiesSection = () => {
