@@ -2,7 +2,7 @@ import { useState, useEffect, FormEvent } from "react";
 import MouseFollowMesh from "@/components/MouseFollowMesh";
 
 // Change this when you need a new password.
-const PASSWORD = "netflix2026";
+const PASSWORD = "miad2026";
 const STORAGE_KEY = "portfolio-unlocked-v1";
 
 const PasswordGate = ({ children }: { children: React.ReactNode }) => {

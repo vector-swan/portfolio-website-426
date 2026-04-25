@@ -126,18 +126,25 @@ const PromptEngineeringStudio = () => {
 
       {/* 1. Hero */}
       <BlueBg>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-16 md:pt-44 md:pb-20">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-0 md:pt-44">
           <Section>
             <h1 className="text-white/50 font-body font-medium text-xs md:text-sm tracking-widest uppercase mb-3">
               Prompt Engineering Studio
             </h1>
             <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-white mb-6">
-              Designing the tool that taught Workday how to prompt.
+              Designing the tool that <em className="italic">taught</em><br />Workday how to prompt.
             </h2>
-            <p className="font-body text-white/50 text-sm md:text-base">
+            <p className="font-body text-white/50 text-sm md:text-base mb-16">
               Sole Designer · Founding&nbsp;&nbsp;|&nbsp;&nbsp;2023–2025&nbsp;&nbsp;|&nbsp;&nbsp;Team: 3 to 20+
             </p>
           </Section>
+          <div className="relative w-full">
+            <img
+              src="/images/genai-studio/compose-populated.png"
+              alt="Prompt Engineering Studio — Compose view with a populated prompt segment"
+              className="w-full rounded-t-2xl object-cover object-top shadow-2xl"
+            />
+          </div>
         </div>
       </BlueBg>
 
@@ -147,13 +154,10 @@ const PromptEngineeringStudio = () => {
           <Section>
             <PinkLabel>THE PROBLEM</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              Every prompt test needed an engineering ticket.
+              Gen AI didn't exist in Workday.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-6">
-              Before this tool existed, PMs had no independent path to building or testing AI features. Every prompt idea, every tweak, every iteration, required pulling an engineer off something else. There was no way to see if a prompt worked without filing a ticket and waiting. I was hired to change that. By the time we shipped, the feedback loop that had taken a month took a week.
-            </p>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
-              I joined as the sole designer on a founding team of four. No PM, which meant I was deciding what to build, not just designing it. When our first PM joined I shifted into roadmap collaboration, but in those early months I was making both product and design calls.
+              Before this tool existed, PMs had no path to building or testing AI features. Our goal was to create a seamless way to author, publish and deploy prompts all in one interface.
             </p>
           </Section>
         </div>
@@ -167,30 +171,27 @@ const PromptEngineeringStudio = () => {
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
               Five PMs and five different use cases.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-4">
-              I used a working POC engineering and I had built to run a usability study with five PMs across five Workday product lines.
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-8">
+              I used a working POC engineering and I had built to run a usability study with five PMs across five Workday product lines. The tool structured prompts into three fields: Action, Context, and Example. Each PM came with a real use case and tried to build from scratch.
             </p>
-            <p className="font-body font-semibold text-foreground text-sm max-w-2xl mb-2">The tool structured prompts into three fields:</p>
-            <ul className="font-body text-muted-foreground text-sm max-w-2xl mb-6 space-y-1 list-none">
-              <li><span className="font-semibold text-foreground">Action:</span> what you want the AI to do</li>
-              <li><span className="font-semibold text-foreground">Context:</span> background information</li>
-              <li><span className="font-semibold text-foreground">Example:</span> a sample of the ideal output</li>
+            <img
+              src="/images/genai-studio/old-prompt-area.png"
+              alt="Early POC prompt composer showing three fields: Context, Action, and Example"
+              className="w-full max-w-lg rounded-xl shadow-md mb-10 border border-border bg-white"
+            />
+            <p className="font-body font-semibold text-foreground text-sm max-w-2xl mb-4 uppercase tracking-widest">What we found</p>
+            <ul className="space-y-3 list-disc pl-5 max-w-2xl mb-10">
+              {[
+                { finding: "The three fields weren't clearly distinct", detail: "most participants put everything into one box." },
+                { finding: "Guidance was there but nobody found it", detail: "almost no one discovered the help panel on their own." },
+                { finding: "Too many advanced controls", detail: "model settings overwhelmed PMs who lacked the context to choose." },
+                { finding: "No way to track iterations", detail: "every prompt version felt like starting over." },
+              ].map((item) => (
+                <li key={item.finding} className="font-body text-muted-foreground text-sm leading-relaxed">
+                  <span className="font-semibold text-foreground">{item.finding}:</span> {item.detail}
+                </li>
+              ))}
             </ul>
-            <div className="max-w-lg mb-10 rounded-xl border border-border p-6 bg-white">
-              <p className="font-display font-semibold text-foreground text-sm mb-4">Each PM came with a real use case and tried to build a prompt from scratch. Here's what we found.</p>
-              <ul className="space-y-3 list-disc pl-5">
-                {[
-                  { finding: "The three fields weren't clearly distinct", detail: "most participants put everything into one box." },
-                  { finding: "Guidance was there but nobody found it", detail: "almost no one discovered the help panel on their own." },
-                  { finding: "Too many advanced controls", detail: "model settings overwhelmed PMs who lacked the context to choose." },
-                  { finding: "No way to track iterations", detail: "every prompt version felt like starting over." },
-                ].map((item) => (
-                  <li key={item.finding} className="font-body text-muted-foreground text-sm leading-relaxed">
-                    <span className="font-semibold text-foreground">{item.finding}:</span> {item.detail}
-                  </li>
-                ))}
-              </ul>
-            </div>
 
           </Section>
         </div>
@@ -202,13 +203,10 @@ const PromptEngineeringStudio = () => {
           <Section>
             <PinkLabel light>THE DECISION</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-6">
-              After research, I wanted one box. Engineering pushed back.
+              After research, I wanted one box.<br />Engineering pushed back.
             </h2>
             <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-6">
               My read of the research was to simplify the composer to a single free-text input. Engineering disagreed. They'd seen what structured prompts produced versus unstructured ones, and the data backed them up. So we found a middle ground: default to showing one segment, with the option to expand to the full three-part structure for users who wanted more control.
-            </p>
-            <p className="font-body font-semibold text-white text-base md:text-lg max-w-2xl leading-relaxed mb-8">
-              So instead of removing the structure, I redesigned the scaffolding around it.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
               {[
@@ -235,37 +233,77 @@ const PromptEngineeringStudio = () => {
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-10">
               Four features that took a prompt from idea to production.
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
-              {features.map((f) => (
-                <div key={f.num} className="rounded-xl border border-border p-6">
-                  <span className="text-coral font-display font-bold text-lg">{f.num}</span>
-                  <h3 className="font-display font-bold text-base text-foreground mt-2 mb-2">{f.name}</h3>
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
+            {/* 01 Prompt Builder */}
+            <div className="mb-14">
+              <div className="flex items-start gap-4 mb-6">
+                <span className="text-coral font-display font-bold text-2xl leading-none">01</span>
+                <div>
+                  <h3 className="font-display font-bold text-xl text-foreground mb-2">Prompt Builder</h3>
+                  <p className="font-body text-muted-foreground text-base leading-relaxed max-w-2xl">Structured fields for Action, Context, and Example, with rewritten hint text and copy-pasteable guide examples based on research findings. The copy-pasteable examples were what finally got hesitant users moving.</p>
                 </div>
-              ))}
-            </div>
-
-            {/* Studio screenshots */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                <div className="bg-muted/30 px-4 py-2 border-b border-border">
-                  <p className="font-body text-xs text-muted-foreground font-medium">Compose: structured three-segment prompt builder</p>
-                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden border border-border shadow-sm max-w-4xl">
                 <ClickImg
-                  src="/images/genai-studio/compose-populated-one-segment.png"
-                  alt="GenAI Studio Compose screen showing the three-segment prompt builder with Action, Context, and Example fields"
-                  caption="Compose: structured three-segment prompt builder"
+                  src="/images/genai-studio/compose-populated.png"
+                  alt="Prompt Builder showing three-segment composer with Action, Context, and Example fields populated"
+                  caption="Prompt Builder: structured composer with real content and output side by side."
                   onOpen={openLightbox}
                 />
               </div>
-              <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                <div className="bg-muted/30 px-4 py-2 border-b border-border">
-                  <p className="font-body text-xs text-muted-foreground font-medium">Deploy: everything needed to push to production</p>
+            </div>
+
+            {/* 02 Evaluation Framework */}
+            <div className="mb-14">
+              <div className="flex items-start gap-4 mb-6">
+                <span className="text-coral font-display font-bold text-2xl leading-none">02</span>
+                <div>
+                  <h3 className="font-display font-bold text-xl text-foreground mb-2">Evaluation Framework</h3>
+                  <p className="font-body text-muted-foreground text-base leading-relaxed max-w-2xl">Structured prompt testing before shipping. Mental model: a teacher grading a quiz. Test Suite = the quiz. Test Case = a single question. Running an Evaluation = grading. This framing gave PMs a bridge from software QA concepts they already knew.</p>
                 </div>
+              </div>
+              <div className="rounded-xl overflow-hidden border border-border shadow-sm max-w-4xl">
                 <ClickImg
-                  src="/images/genai-studio/deploy-1-published.png"
-                  alt="GenAI Studio Deploy screen showing published prompts table with production deployment status"
-                  caption="Deploy: everything needed to push to production"
+                  src="/images/genai-studio/results-tab.png"
+                  alt="Evaluation Framework Results tab showing Pass/Fail scores across test suites"
+                  caption="Evaluation Framework: Pass/Fail scoring across test suites."
+                  onOpen={openLightbox}
+                />
+              </div>
+            </div>
+
+            {/* 03 Version History */}
+            <div className="mb-14">
+              <div className="flex items-start gap-4 mb-6">
+                <span className="text-coral font-display font-bold text-2xl leading-none">03</span>
+                <div>
+                  <h3 className="font-display font-bold text-xl text-foreground mb-2">Version History</h3>
+                  <p className="font-body text-muted-foreground text-base leading-relaxed max-w-2xl">Go back to any previous version at any point. Came directly from research: participants wanted to see which prompt version generated which output. Without that link, iterating felt arbitrary.</p>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden border border-border shadow-sm max-w-4xl">
+                <ClickImg
+                  src="/images/genai-studio/history.png"
+                  alt="Version History view showing a list of prompt runs with timestamps"
+                  caption="Version History: every iteration tracked and reversible."
+                  onOpen={openLightbox}
+                />
+              </div>
+            </div>
+
+            {/* 04 Deploy */}
+            <div className="mb-6">
+              <div className="flex items-start gap-4 mb-6">
+                <span className="text-coral font-display font-bold text-2xl leading-none">04</span>
+                <div>
+                  <h3 className="font-display font-bold text-xl text-foreground mb-2">Deploy Handoff + Deploy Alerts</h3>
+                  <p className="font-body text-muted-foreground text-base leading-relaxed max-w-2xl">A single place to publish, track, and monitor prompts in production. Alerts notified owners when something changed downstream so nothing shipped silently.</p>
+                </div>
+              </div>
+              <div className="rounded-xl overflow-hidden border border-border shadow-sm max-w-4xl">
+                <ClickImg
+                  src="/images/genai-studio/deploy.png"
+                  alt="Deploy view showing all published prompts with version numbers and owners"
+                  caption="Deploy: publish, track, and monitor prompts in production."
                   onOpen={openLightbox}
                 />
               </div>
@@ -280,11 +318,19 @@ const PromptEngineeringStudio = () => {
           <Section>
             <PinkLabel>PROCESS</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              I'd rather see it working than wireframe something I don't fully understand.
+              Getting everyone to the same picture.
             </h2>
-            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
+            <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-10">
               The bigger cross-functional move was the Prompt Lifecycle Map. Engineers and PMs had completely different pictures of how a prompt went from idea to production, and that confusion showed up as bugs, missed handoffs, and rework. I mapped the full lifecycle from Studio authoring through deployment and made it the shared reference. It became the first thing every new product team saw when they adopted the platform.
             </p>
+            <div className="rounded-xl overflow-hidden border border-border shadow-sm bg-white">
+              <ClickImg
+                src="/images/genai-studio/prompt-lifecycle-map.jpg"
+                alt="GenAI Studio Prompt Lifecycle Map showing the full flow from Author through Integrate, Publish, and Deploy"
+                caption="Prompt Lifecycle Map: the shared reference for every team that adopted the platform."
+                onOpen={openLightbox}
+              />
+            </div>
           </Section>
         </div>
       </section>
@@ -304,15 +350,15 @@ const PromptEngineeringStudio = () => {
                   The Prompt Wizard was a design direction I believed in.
                 </h2>
                 <p className="font-body text-muted-foreground text-base md:text-lg leading-relaxed">
-                  Instead of asking PMs to understand prompt structure and fill in three blank fields, guide them through a wizard that asks about their use case and generates a well-formed prompt. Research from 2024 validated the concept. Leadership deprioritized it. Engineering cost was the constraint.
+                  Instead of asking PMs to fill in three blank fields, present them an interface that asks about their use case and generates a well-formed prompt. Research from 2024 validated the concept, but leadership deprioritized it. The engineering cost and competing priorities was the constraint.
                 </p>
               </div>
               <div>
                 <h2 className="font-display font-bold text-lg md:text-xl text-foreground mb-2">
-                  That kind of influence doesn't show up in shipped features, but it's real.
+                  That kind of influence doesn't show up in shipped features, but I believe it is worth highlighting.
                 </h2>
                 <p className="font-body text-muted-foreground text-base md:text-lg leading-relaxed">
-                  I ran the research, made the case, and was overruled. The research data became part of the roadmap conversation even after I transitioned. Looking at how many prompt engineering tools exist today, I still believe the concept was right. The Prompt Wizard would have mattered.
+                  I ran the research, made the case, and was overruled. I still believe Prompt Wizard would have mattered.
                 </p>
               </div>
             </div>
@@ -320,28 +366,37 @@ const PromptEngineeringStudio = () => {
         </div>
       </section>
 
-      {/* 9. Impact & Outcome */}
-      <BlueBg>
+      {/* 9. Impact & Outcome — Stats */}
+      <section style={{ background: "#F9EEF2", backgroundImage: "none" }}>
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
           <Section>
-            <PinkLabel light>IMPACT & OUTCOME</PinkLabel>
-            <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-10">
+            <PinkLabel>IMPACT</PinkLabel>
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-10">
               Now PMs can build and test prompts.
             </h2>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {allStats.map((s) => (
                 <div
                   key={s.number}
-                  className="rounded-xl p-5 text-center"
-                  style={{ background: "hsla(210, 70%, 65%, 0.18)" }}
+                  className="rounded-xl p-5 text-center bg-white border border-border"
                 >
-                  <p className="text-white font-display font-bold text-3xl md:text-4xl mb-2">{s.number}</p>
-                  <p className="font-body text-white/70 text-xs leading-relaxed">{s.label}</p>
+                  <p className="text-coral font-display font-bold text-3xl md:text-4xl mb-2">{s.number}</p>
+                  <p className="font-body text-muted-foreground text-xs leading-relaxed">{s.label}</p>
                 </div>
               ))}
             </div>
+          </Section>
+        </div>
+      </section>
 
+      {/* 9b. Impact — Story */}
+      <BlueBg>
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
+          <Section>
+            <PinkLabel light>OUTCOME</PinkLabel>
+            <h2 className="font-display font-bold text-2xl md:text-4xl text-white mb-6">
+              A POC that became a platform.
+            </h2>
             <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed">
               This started as a POC. Four people, no roadmap guarantee, no dedicated PM. The adoption numbers made the case for investment and the team grew from four to more than twenty. That track record was what moved us to Workday's highest-priority project: the Self-Service Agent. The Studio is still running and available to teams building prompts across Workday.
             </p>
