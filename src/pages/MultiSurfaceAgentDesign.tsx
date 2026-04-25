@@ -206,18 +206,12 @@ const MultiSurfaceAgentDesign = () => {
 
       {/* 9. Footer Nav */}
       <section className="bg-white border-t border-border" style={{ backgroundImage: "none" }}>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-8 flex items-center">
           <Link
             to="/#case-studies"
             className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             &larr; Back to Work
-          </Link>
-          <Link
-            to="/genai-text-framework"
-            className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            &larr; Previous: GenAI Text Framework
           </Link>
         </div>
       </section>
