@@ -60,7 +60,7 @@ const CaseStudiesSection = () => {
             Selected <em className="italic">Work</em>
           </h2>
           <p className="text-muted-foreground text-lg max-w-lg">
-            Three stories from building Workday's first AI products.
+            Two stories from building Workday's first AI products.
           </p>
         </div>
 
