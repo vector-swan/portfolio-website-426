@@ -5,6 +5,7 @@ type CaseStudy = {
   title: string;
   description: string;
   image: string | null;
+  imageAlt: string;
   bgStyle: React.CSSProperties;
   imageClass: string;
   accentLink: string;
@@ -17,6 +18,7 @@ const caseStudies: CaseStudy[] = [
     description:
       "Workday's first generative AI product. A horizontal foundation for text generation across 750+ enterprise customers, built to feel native on every surface it touched.",
     image: "/images/text-framework/text-framework-thumb.png",
+    imageAlt: "GenAI Text Framework case study thumbnail showing the AI-assisted text generation interface in Workday",
     bgStyle: {
       background:
         "radial-gradient(circle at 30% 20%, hsla(210,70%,55%,1) 0%, hsla(220,60%,45%,1) 55%, hsla(230,70%,35%,1) 100%)",
@@ -30,8 +32,8 @@ const caseStudies: CaseStudy[] = [
     title: "Prompt Engineering Studio",
     description:
       "The developer tool that let Workday's non-technical teams build and test AI features without writing code. 450 internal users, 34% weekly stickiness.",
-    image:
-      "/images/genai-studio/compose-populated-one-segment.png",
+    image: "/images/genai-studio/compose-populated-one-segment.png",
+    imageAlt: "Prompt Engineering Studio case study thumbnail showing the compose editor with structured prompt fields and AI output",
     bgStyle: {
       background:
         "radial-gradient(circle at 30% 20%, hsla(210,70%,55%,1) 0%, hsla(220,60%,45%,1) 55%, hsla(230,70%,35%,1) 100%)",
@@ -91,7 +93,7 @@ const CaseStudiesSection = () => {
                   {study.image && (
                     <img
                       src={study.image}
-                      alt={`${study.title} preview`}
+                      alt={study.imageAlt}
                       className={study.imageClass}
                     />
                   )}
