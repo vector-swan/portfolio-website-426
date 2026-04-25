@@ -172,7 +172,7 @@ const PromptEngineeringStudio = () => {
               Five PMs and five different use cases.
             </h2>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-8">
-              I used a working POC engineering and I had built to run a usability study with five PMs across five Workday product lines. The tool structured prompts into three fields: Action, Context, and Example. Each PM came with a real use case and tried to build from scratch.
+              I used a working POC that engineering and I had built to run a usability study with five PMs across five Workday product lines. The tool structured prompts into three fields: Action, Context, and Example. Each PM came with a real use case and tried to build from scratch.
             </p>
             <img
               src="/images/genai-studio/old-prompt-area.png"
@@ -350,7 +350,7 @@ const PromptEngineeringStudio = () => {
                   The Prompt Wizard was a design direction I believed in.
                 </h2>
                 <p className="font-body text-muted-foreground text-base md:text-lg leading-relaxed">
-                  Instead of asking PMs to fill in three blank fields, present them an interface that asks about their use case and generates a well-formed prompt. Research from 2024 validated the concept, but leadership deprioritized it. The engineering cost and competing priorities was the constraint.
+                  Instead of asking PMs to fill in three blank fields, present them an interface that asks about their use case and generates a well-formed prompt. Research from 2024 validated the concept, but leadership deprioritized it. Engineering costs and competing priorities were the constraint.
                 </p>
               </div>
               <div>

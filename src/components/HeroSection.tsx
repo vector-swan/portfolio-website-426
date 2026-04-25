@@ -29,7 +29,7 @@ const HeroSection = () => {
             className="text-muted-foreground text-lg md:text-xl max-w-2xl mb-10 opacity-0 animate-fade-up leading-relaxed"
             style={{ animationDelay: "0.3s" }}
           >
-            Over seven years designing products at scale including three leading Workday's AI-first initiatives. I build the systems, frameworks, and developer tools that make AI features consistent, trustworthy, and fast to ship.
+            Over seven years designing products at scale, including leading three of Workday's AI-first initiatives. I build the systems, frameworks, and developer tools that make AI features consistent, trustworthy, and fast to ship.
           </p>
 
           <div className="opacity-0 animate-fade-up" style={{ animationDelay: "0.45s" }}>

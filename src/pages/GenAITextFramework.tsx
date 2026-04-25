@@ -603,7 +603,7 @@ const GenAITextFramework = () => {
               We only owned one part of the experience.
             </h2>
             <p className="font-body text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-10">
-              I would have liked to zoom out to the full workflow, what it actually means to write a job description with AI, not just populate a single field. Our "one size fits all" solution meant real tradeoffs. If every text field on a page had the FAAB, it could look overwhelming. We advised against it, but we didn't own that decision.
+              I would have liked to zoom out to the full workflow, what it actually means to write a job description with AI, not just populate a single field. Our "one-size-fits-all" solution meant real tradeoffs. If every text field on a page had the FAAB, it could look overwhelming. We advised against it, but we didn't own that decision.
             </p>
             <h2 className="font-display font-bold text-2xl md:text-3xl text-white mb-4 max-w-2xl">
               I'd explore single-click form completion.
