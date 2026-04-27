@@ -65,9 +65,9 @@ const CaseStudiesSection = () => {
         </div>
 
         {/* Horizontal scroll on mobile, 3-col grid on desktop */}
-        <div className="flex lg:grid lg:grid-cols-2 gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-4 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0">
+        <div className="flex flex-col sm:flex-row gap-6">
           {caseStudies.map((study, i) => {
-            const cardClasses = `group flex-shrink-0 w-[85vw] sm:w-[70vw] lg:w-auto snap-start bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500 flex flex-col ${
+            const cardClasses = `group flex-1 bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500 flex flex-col ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             } ${study.href ? "cursor-pointer" : "opacity-80"}`;
 
