@@ -145,7 +145,7 @@ const GenAITextFramework = () => {
           <Section>
             <PinkLabel>THE PROBLEM</PinkLabel>
             <h2 className="font-display font-bold text-2xl md:text-4xl text-foreground mb-6">
-              There was no pattern for AI in Workday.
+              Every team was building AI differently.
             </h2>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed mb-4">
               Generative AI had just hit the scene in 2023 and multiple Workday products were already building features independently. Every team's AI button looked and behaved differently. Some lived above the field, some below. Some features used modals to display generation, others just dropped text inline. The biggest sticking point? What should our AI disclaimer be, and where should we show sources.
