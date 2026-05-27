@@ -16,7 +16,7 @@ const caseStudies: CaseStudy[] = [
   {
     title: "GenAI Text Framework",
     description:
-      "Workday's first generative AI product. A horizontal foundation for text generation across 750+ enterprise customers, built to feel native on every surface it touched.",
+      "Workday had hundreds of products and no shared pattern for text generation. I built the framework to address that problem. 750+ enterprise customers, 7 features shipped.",
     image: "/images/text-framework/text-framework-thumb.png",
     imageAlt: "GenAI Text Framework case study thumbnail showing the AI-assisted text generation interface in Workday",
     bgStyle: {
@@ -31,7 +31,7 @@ const caseStudies: CaseStudy[] = [
   {
     title: "Prompt Engineering Studio",
     description:
-      "The developer tool that let Workday's non-technical teams build and test AI features without writing code. 450 internal users, 34% weekly stickiness.",
+      "Non-technical teams had no way to build or test product features without filing an engineering ticket. Started as a POC with four people. 450 users, 34% weekly stickiness.",
     image: "/images/genai-studio/compose-populated-one-segment.png",
     imageAlt: "Prompt Engineering Studio case study thumbnail showing the compose editor with structured prompt fields and AI output",
     bgStyle: {
@@ -60,7 +60,7 @@ const CaseStudiesSection = () => {
             Selected <em className="italic">Work</em>
           </h2>
           <p className="text-muted-foreground text-lg max-w-lg">
-            Two stories from building Workday's first AI products.
+            Two stories of building internal platforms that teams rely on.
           </p>
         </div>
 

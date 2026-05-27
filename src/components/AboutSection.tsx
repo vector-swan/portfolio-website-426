@@ -25,13 +25,10 @@ const AboutSection = () => {
               <em className="italic">A little</em> about me
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
-              I'm a Senior Product Designer with{" "}
-              <span className="text-foreground font-medium">7+ years shipping enterprise software at scale</span>.
-              Since 2023, I've led Workday's AI-first design work, including the GenAI Text Framework, the Prompt Engineering Studio, and cross-platform agent experiences across five surfaces.
+              I'm a Senior Product Designer with 7+ years at Workday. I've worked on document platforms, data tools, mass-action workflows, and for the last few years, AI. Both of these present their own unique challenges, but share a similar objective: bring the benefits and complexity of technology and package it so the end user can harness its power.
             </p>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              I work in the space where{" "}
-              <span className="text-coral font-medium">deeply technical systems meet everyday humans</span>. My passion is foundational design. The invisible infrastructure that makes new technology usable, scalable, and trustworthy at enterprise scale.
+              I care about foundational design, including systems underneath the surface and work that makes everything else easier to build.
             </p>
           </div>
         </div>

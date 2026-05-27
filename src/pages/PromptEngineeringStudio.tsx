@@ -157,7 +157,7 @@ const PromptEngineeringStudio = () => {
               Gen AI didn't exist in Workday.
             </h2>
             <p className="font-body text-muted-foreground text-base md:text-lg max-w-2xl leading-relaxed">
-              Before this tool existed, PMs had no path to building or testing AI features. Our goal was to create a seamless way to author, publish and deploy prompts all in one interface.
+              Before the text framework existed, there was no way for non-technical teams to build or test product features without an engineering ticket.
             </p>
           </Section>
         </div>
@@ -406,18 +406,12 @@ const PromptEngineeringStudio = () => {
 
       {/* 10. Footer Nav */}
       <section className="bg-white border-t border-border" style={{ backgroundImage: "none" }}>
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 py-8">
           <Link
             to="/#case-studies"
             className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             &larr; Back to Work
-          </Link>
-          <Link
-            to="/multi-surface-agent-design"
-            className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Next: Multi-Surface Agent Design &rarr;
           </Link>
         </div>
       </section>
